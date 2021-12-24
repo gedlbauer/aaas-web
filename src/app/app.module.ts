@@ -4,15 +4,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { DetectorListComponent } from './components/detector-list/detector-list.component';
+import { LoginComponent } from './components/login/login.component';
+import { NgMaterialModule } from './modules/ng-material/ng-material.module';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DetectorListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LayoutModule,
+    NgMaterialModule,
+    OAuthModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

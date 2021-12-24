@@ -1,0 +1,10 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+:host{
+    display: flex;
+    justify-content: stretch;
+    flex-direction: column;
+    height: 100%;
+}
