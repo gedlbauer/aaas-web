@@ -17,4 +17,8 @@ export class AuthenticationService {
     return this.oauthService.hasValidAccessToken() &&
       this.oauthService.hasValidIdToken();
   }
+
+  logout(): void {
+    this.oauthService.logOut();
+  }
 }
