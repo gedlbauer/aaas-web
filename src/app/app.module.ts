@@ -10,12 +10,14 @@ import { LoginComponent } from './components/login/login.component';
 import { NgMaterialModule } from './modules/ng-material/ng-material.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule } from '@angular/common/http';
+import { ActionListComponent } from './components/action-list/action-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DetectorListComponent,
-    LoginComponent
+    LoginComponent,
+    ActionListComponent
   ],
   imports: [
     BrowserModule,
