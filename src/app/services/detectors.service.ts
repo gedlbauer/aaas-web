@@ -19,9 +19,9 @@ export class DetectorsService {
     console.log("loadall");
     this.http.get<Detector[]>(`${environment.apiUrl}/api/detector`)
       .subscribe(result => this.detectors.next(result));
-}
+  }
 
-getAll(): Observable < Detector[] > {
-  return this.detectors;
-}
+  getAll(): Observable<Detector[]> {
+    return this.detectors;
+  }
 }

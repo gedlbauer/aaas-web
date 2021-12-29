@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ActionsService } from 'src/app/services/actions.service';
+import { Action } from 'src/app/types/action.type';
 
 @Component({
   selector: 'app-action-list',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActionListComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['name', 'more'];
+  actions$?: Observable<Action[]>;
+  constructor(private actionsService: ActionsService) { }
 
   ngOnInit(): void {
+    this.actions$ = this.actionsService.getAll();
   }
 
 }

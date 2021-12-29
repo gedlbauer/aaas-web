@@ -12,15 +12,11 @@ import { Detector } from 'src/app/types/detector.type';
 })
 export class DetectorListComponent implements OnInit {
   detectors$?: Observable<Detector[]>;
-  detectors?: Detector[];
   displayedColumns: string[] = ['telemetryName', 'action', 'checkInterval', 'active', 'more'];
 
   constructor(private detectorsService: DetectorsService, private router: Router) { }
 
   ngOnInit(): void {
-    this.detectorsService.getAll().subscribe(x => {
-      console.log("sub raised");
-      this.detectors = x
-    });
+    this.detectors$ = this.detectorsService.getAll();
   }
 }

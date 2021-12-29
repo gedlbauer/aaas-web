@@ -15,6 +15,7 @@ import { ApiKeyInterceptor } from './http-interceptors/api-key.interceptor';
 import { FormatMillisecondsPipe } from './pipes/format-milliseconds.pipe';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
 import { DetectorDetailsComponent } from './components/detector-details/detector-details.component';
+import { ActionDetailsComponent } from './components/action-details/action-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DetectorDetailsComponent } from './components/detector-details/detector
     ActionListComponent,
     FormatMillisecondsPipe,
     ClickStopPropagationDirective,
-    DetectorDetailsComponent
+    DetectorDetailsComponent,
+    ActionDetailsComponent
   ],
   imports: [
     BrowserModule,
