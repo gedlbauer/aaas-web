@@ -10,7 +10,12 @@
   </ng-container>
 
   <ng-container matColumnDef="checkInterval">
-    <th mat-header-cell *matHeaderCellDef> Check interval </th>
+    <th mat-header-cell *matHeaderCellDef>
+      <div>
+        <div>Check interval</div>
+        <div>[mm:ss.ms]</div>
+      </div>
+    </th>
     <td mat-cell *matCellDef="let element"> {{element.checkInterval|formatMilliseconds}} </td>
   </ng-container>
 
