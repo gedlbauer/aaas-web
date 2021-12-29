@@ -9,15 +9,22 @@ import { DetectorListComponent } from './components/detector-list/detector-list.
 import { LoginComponent } from './components/login/login.component';
 import { NgMaterialModule } from './modules/ng-material/ng-material.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ActionListComponent } from './components/action-list/action-list.component';
+import { ApiKeyInterceptor } from './http-interceptors/api-key.interceptor';
+import { FormatMillisecondsPipe } from './pipes/format-milliseconds.pipe';
+import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
+import { DetectorDetailsComponent } from './components/detector-details/detector-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DetectorListComponent,
     LoginComponent,
-    ActionListComponent
+    ActionListComponent,
+    FormatMillisecondsPipe,
+    ClickStopPropagationDirective,
+    DetectorDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,9 @@ import { ActionListComponent } from './components/action-list/action-list.compon
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
