@@ -6,7 +6,7 @@
             <mat-error *ngIf="myForm?.get('name')?.hasError('required')">Die Aktion braucht einen Namen!</mat-error>
         </mat-form-field>
     </div>
-    <ng-container *ngIf="getActionType() === 'MailAction'">
+    <ng-container *ngIf="action.typeName === 'MailAction'">
         <div>
             <mat-form-field appearance="standard">
                 <mat-label>Email</mat-label>
@@ -27,7 +27,7 @@
             </mat-form-field>
         </div>
     </ng-container>
-    <ng-container *ngIf="getActionType() === 'WebHookAction'">
+    <ng-container *ngIf="action.typeName === 'WebHookAction'">
         <div>
             <mat-form-field appearance="standard">
                 <mat-label>Request URL</mat-label>

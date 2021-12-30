@@ -1,0 +1,1 @@
+export type DetectorType = 'SumSlidingWindowDetector' | 'AverageSlidingWindowDetector' | 'CurrentValueSlidingWindowDetector' | 'MinMaxDetector';

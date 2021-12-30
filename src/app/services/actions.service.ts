@@ -1,11 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Action } from '../types/action.type';
-import { ActionType } from '../types/actionType.type';
-import { isMailAction, MailAction } from '../types/mailAction.type';
-import { isWebHookAction, WebHookAction } from '../types/webHookAction.type';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +22,7 @@ export class ActionsService {
   }
 
   private getUrl(action: Action): string | undefined {
-    const actionType = this.getActionType(action);
+    const actionType = action.typeName;
     if (!actionType) {
       return undefined;
     }
@@ -40,7 +37,7 @@ export class ActionsService {
     return this.http.get<Action>(`${environment.apiUrl}/api/action/${id}`);
   }
 
-  save(action: Action): Observable<any> | undefined {
+  save(action: Action): Observable<Action> | undefined {
     const url = this.getUrl(action);
     if (!url) return undefined;
     console.log("POST: " + url)
@@ -58,17 +55,6 @@ export class ActionsService {
       this.actions.next(actions);
     }
     ));
-  }
-
-
-  getActionType(action?: Action): ActionType {
-    if (isMailAction(action)) {
-      return 'MailAction';
-    }
-    if (isWebHookAction(action)) {
-      return 'WebHookAction';
-    }
-    return undefined;
   }
 
 }

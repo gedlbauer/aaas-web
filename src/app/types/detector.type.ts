@@ -1,5 +1,6 @@
 import { Action } from "./action.type";
 import { Client } from "./client.type";
+import { DetectorType } from "./detectorType.type";
 
 export interface Detector { 
     id: number;
@@ -8,4 +9,5 @@ export interface Detector {
     telemetryName: string;
     checkInterval: number;
     isRunning: boolean;
+    typeName: DetectorType;
 }

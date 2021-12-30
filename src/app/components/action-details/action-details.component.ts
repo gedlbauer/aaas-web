@@ -13,7 +13,7 @@ import { WebHookAction } from 'src/app/types/webHookAction.type';
 })
 export class ActionDetailsComponent implements OnInit {
   myForm!: FormGroup;
-  action: Action | MailAction | WebHookAction = { id: 0, name: '' };
+  action: Action | MailAction | WebHookAction = { id: 0, name: '', typeName: undefined };
   create: boolean = false;
 
   constructor(private fb: FormBuilder, private actionsService: ActionsService, private route: ActivatedRoute, private router: Router) { }
@@ -31,6 +31,7 @@ export class ActionDetailsComponent implements OnInit {
     } else {
       if (param === 'MailAction') {
         this.action = {
+          typeName: 'MailAction',
           id: 0,
           name: 'New Mail Action',
           mailAddress: '',
@@ -38,6 +39,7 @@ export class ActionDetailsComponent implements OnInit {
         }
       } else if (param === 'WebHookAction') {
         this.action = {
+          typeName: 'WebHookAction',
           id: 0,
           name: "New Web Hook Actoin",
           requestUrl: ''
@@ -54,23 +56,20 @@ export class ActionDetailsComponent implements OnInit {
     // we are using a FormBuilder to fill the Form-Model
     let formOptions: any = {
       name: [this.action.name, { validators: [Validators.required] }],
-      id: [this.action.id]
+      id: [this.action.id],
+      typeName: [this.action.typeName]
     };
 
-    if (this.getActionType() === "MailAction") {
+    if (this.action.typeName === "MailAction") {
       const mailAction = this.action as MailAction;
       formOptions.mailAddress = [mailAction.mailAddress, { validators: [Validators.required, Validators.email] }];
       formOptions.mailContent = [mailAction.mailContent, { validators: [Validators.required] }];
     }
-    else if (this.getActionType() === "WebHookAction") {
+    else if (this.action.typeName === "WebHookAction") {
       const webHookAction = this.action as WebHookAction;
       formOptions.requestUrl = [webHookAction.requestUrl, { validators: [Validators.required, Validators.pattern(/^(?:https?:\/\/)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9()]+\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)] }];
     }
     this.myForm = this.fb.group(formOptions);
-  }
-
-  getActionType() {
-    return this.actionsService.getActionType(this.action);
   }
 
   submitForm() {

@@ -1,1 +1,46 @@
-<p>detector-details works!</p>
+<form [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <div>
+        <mat-form-field appearance="standard">
+            <mat-label>Name</mat-label>
+            <input name="name" formControlName="name" type="text" matInput>
+            <mat-error *ngIf="myForm?.get('name')?.hasError('required')">Die Aktion braucht einen Namen!</mat-error>
+        </mat-form-field>
+    </div>
+    <ng-container *ngIf="detector?.typeName === 'MinMaxDetector'">
+        <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Email</mat-label>
+                <input name="mailAddress" formControlName="mailAddress" type="email" matInput>
+                <mat-error *ngIf="myForm?.get('mailAddress')?.hasError('required')">Geben Sie eine Email Adresse an!
+                </mat-error>
+                <mat-error *ngIf="myForm?.get('mailAddress')?.hasError('email')">Das ist keine gültige Email Adresse!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Mail Inhalt</mat-label>
+                <textarea name="mailContent" formControlName="mailContent" type="text" matInput></textarea>
+                <mat-error *ngIf="myForm?.get('mailContent')?.hasError('required')">
+                    Geben Sie den Inhalt der Email an!
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="detector?.typeName?.endsWith('SlidingWindowDetector')">
+        <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Request URL</mat-label>
+                <input name="requestUrl" formControlName="requestUrl" type="text" matInput>
+                <mat-error *ngIf="myForm?.get('requestUrl')?.hasError('required')">
+                    Geben Sie die aufzurufende URL ein!
+                </mat-error>
+                <mat-error *ngIf="myForm?.get('requestUrl')?.hasError('pattern')">
+                    Das ist keine gültige URL!
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </ng-container>
+    <button mat-raised-button color="accent" type="submit" class="ui button"
+        [disabled]="myForm?.invalid">Speichern</button>
+</form>
