@@ -53,7 +53,6 @@ export class ActionDetailsComponent implements OnInit {
   }
 
   initForm() {
-    // we are using a FormBuilder to fill the Form-Model
     let formOptions: any = {
       name: [this.action.name, { validators: [Validators.required] }],
       id: [this.action.id],

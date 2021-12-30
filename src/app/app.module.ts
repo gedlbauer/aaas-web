@@ -17,6 +17,7 @@ import { ClickStopPropagationDirective } from './directives/click-stop-propagati
 import { DetectorDetailsComponent } from './components/detector-details/detector-details.component';
 import { ActionDetailsComponent } from './components/action-details/action-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LogsComponent } from './components/logs/logs.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormatMillisecondsPipe,
     ClickStopPropagationDirective,
     DetectorDetailsComponent,
-    ActionDetailsComponent
+    ActionDetailsComponent,
+    LogsComponent
   ],
   imports: [
     BrowserModule,

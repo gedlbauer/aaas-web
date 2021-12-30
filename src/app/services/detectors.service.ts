@@ -34,6 +34,10 @@ export class DetectorsService {
     return this.detectors;
   }
 
+  getById(id: number): Observable<Detector> {
+    return this.http.get<Detector>(`${environment.apiUrl}/api/detector/${id}`);
+  }
+
   save(detector: Detector): Observable<Detector> | undefined {
     console.log('POST: ' + this.getUrl(detector));
     return undefined;
@@ -43,8 +47,8 @@ export class DetectorsService {
     const url = this.getUrl(detector);
     if (!url) return undefined;
     console.log("PUT: " + url);
-    let detectorDto = {...detector, actionId: detector.action.id};
-    detectorDto.actionId = detector.action.id;
+    let detectorDto = {...detector, actionId: detector.action?.id};
+    detectorDto.actionId = detector.action?.id;
     return this.http.put<void>(url, detectorDto).pipe(tap(() => {
       let detectors = this.detectors.getValue();
       const idx = detectors.findIndex(x => x.id === detector.id);

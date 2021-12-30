@@ -1,28 +1,65 @@
 <form [formGroup]="myForm" (ngSubmit)="submitForm()">
     <div>
         <mat-form-field appearance="standard">
-            <mat-label>Name</mat-label>
-            <input name="name" formControlName="name" type="text" matInput>
+            <mat-label>Telemetry Name</mat-label>
+            <input name="telemetryName" formControlName="telemetryName" type="text" matInput>
             <mat-error *ngIf="myForm?.get('name')?.hasError('required')">Die Aktion braucht einen Namen!</mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="standard">
+            <mat-label>Check Interval</mat-label>
+            <input name="checkInterval" formControlName="checkInterval" type="number" matInput>
+            <mat-error *ngIf="myForm?.get('checkInterval')?.hasError('required')">Geben Sie eine Zeitspanne in ms an!
+            </mat-error>
+            <mat-error *ngIf="myForm?.get('checkInterval')?.hasError('min')">
+                Der Wert muss größer als 500ms sein!
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="standard">
+            <mat-label>Action</mat-label>
+            <mat-select formControlName="action" name="action" [value]="detector.action" [compareWith]="actionComparer">
+                <mat-option *ngFor="let action of actions$|async" [value]="action">
+                    {{action.name}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
     <ng-container *ngIf="detector?.typeName === 'MinMaxDetector'">
         <div>
             <mat-form-field appearance="standard">
-                <mat-label>Email</mat-label>
-                <input name="mailAddress" formControlName="mailAddress" type="email" matInput>
-                <mat-error *ngIf="myForm?.get('mailAddress')?.hasError('required')">Geben Sie eine Email Adresse an!
-                </mat-error>
-                <mat-error *ngIf="myForm?.get('mailAddress')?.hasError('email')">Das ist keine gültige Email Adresse!
+                <mat-label>Min</mat-label>
+                <input name="min" formControlName="min" type="number" matInput>
+                <mat-error *ngIf="myForm?.get('minVal')?.hasError('required')">Geben Sie einen Minimalwert an!
                 </mat-error>
             </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="standard">
-                <mat-label>Mail Inhalt</mat-label>
-                <textarea name="mailContent" formControlName="mailContent" type="text" matInput></textarea>
-                <mat-error *ngIf="myForm?.get('mailContent')?.hasError('required')">
-                    Geben Sie den Inhalt der Email an!
+                <mat-label>Max</mat-label>
+                <input name="max" formControlName="max" type="number" matInput>
+                <mat-error *ngIf="myForm?.get('maxVal')?.hasError('required')">Geben Sie einen Maximalwert an!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Max Occurs</mat-label>
+                <input name="maxOccurs" formControlName="maxOccurs" type="number" matInput>
+                <mat-error *ngIf="myForm?.get('maxOccurs')?.hasError('required')">Geben Sie einen Wert an!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Time Window</mat-label>
+                <input name="timeWindow" formControlName="timeWindow" type="number" matInput>
+                <mat-error *ngIf="myForm?.get('timeWindow')?.hasError('required')">Geben Sie eine Zeitspanne in ms an!
+                </mat-error>
+                <mat-error *ngIf="myForm?.get('timeWindow')?.hasError('min')">
+                    Der Wert muss größer als 1000ms sein!
                 </mat-error>
             </mat-form-field>
         </div>
@@ -30,13 +67,31 @@
     <ng-container *ngIf="detector?.typeName?.endsWith('SlidingWindowDetector')">
         <div>
             <mat-form-field appearance="standard">
-                <mat-label>Request URL</mat-label>
-                <input name="requestUrl" formControlName="requestUrl" type="text" matInput>
-                <mat-error *ngIf="myForm?.get('requestUrl')?.hasError('required')">
-                    Geben Sie die aufzurufende URL ein!
+                <mat-label>Time Window [ms]</mat-label>
+                <input name="timeWindow" formControlName="timeWindow" type="number" matInput>
+                <mat-error *ngIf="myForm?.get('timeWindow')?.hasError('required')">
+                    Geben Sie eine Zeitspanne in ms ein!
                 </mat-error>
-                <mat-error *ngIf="myForm?.get('requestUrl')?.hasError('pattern')">
-                    Das ist keine gültige URL!
+                <mat-error *ngIf="myForm?.get('timeWindow')?.hasError('min')">
+                    Der Wert muss größer als 1000ms sein!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Gößer als Schwellenwert?</mat-label>
+                <input name="useGreater" formControlName="useGreater" type="text" matInput>
+                <mat-error *ngIf="myForm?.get('useGreater')?.hasError('required')">
+                    Geben Sie einen Wert ein!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Schwellenwert</mat-label>
+                <input name="threshold" formControlName="threshold" type="text" matInput>
+                <mat-error *ngIf="myForm?.get('threshold')?.hasError('required')">
+                    Geben Sie einen Schwellenwert ein!
                 </mat-error>
             </mat-form-field>
         </div>

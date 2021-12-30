@@ -20,6 +20,6 @@ export class DetectorListComponent implements OnInit {
   }
 
   updateDetector(detector: Detector): void {
-    this.detectorsService.update(detector)?.subscribe(); // TODO: im Service implementieren
+    this.detectorsService.update(detector)?.subscribe();
   }
 }
