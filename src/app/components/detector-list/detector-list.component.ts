@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { DetectorsService } from 'src/app/services/detectors.service';
 import { Detector } from 'src/app/types/detector.type';
 
@@ -12,7 +11,7 @@ import { Detector } from 'src/app/types/detector.type';
 })
 export class DetectorListComponent implements OnInit {
   detectors$?: Observable<Detector[]>;
-  displayedColumns: string[] = ['telemetryName', 'action', 'checkInterval', 'active', 'more'];
+  displayedColumns: string[] = ['detectorType', 'telemetryName', 'action', 'checkInterval', 'active', 'more'];
 
   constructor(private detectorsService: DetectorsService, private router: Router) { }
 
