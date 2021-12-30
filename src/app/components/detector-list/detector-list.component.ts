@@ -19,4 +19,8 @@ export class DetectorListComponent implements OnInit {
   ngOnInit(): void {
     this.detectors$ = this.detectorsService.getAll();
   }
+
+  updateDetector(detector: Detector): void {
+    this.detectorsService.update(detector)?.subscribe(); // TODO: im Service implementieren
+  }
 }

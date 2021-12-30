@@ -22,7 +22,7 @@
   <ng-container matColumnDef="active">
     <th mat-header-cell *matHeaderCellDef> Active </th>
     <td mat-cell *matCellDef="let element">
-      <mat-slide-toggle clickStopPropagation class="example-margin" color="accent" [checked]="element.isRunning">
+      <mat-slide-toggle clickStopPropagation class="example-margin" color="accent" [(ngModel)]="element.isRunning" (change)="updateDetector(element)">
       </mat-slide-toggle>
     </td>
   </ng-container>

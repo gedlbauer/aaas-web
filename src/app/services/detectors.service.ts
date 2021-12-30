@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Detector } from '../types/detector.type';
 import { DetectorType } from '../types/detectorType.type';
@@ -21,7 +21,7 @@ export class DetectorsService {
     if (!actionType) {
       return undefined;
     }
-    return `${environment.apiUrl}/api/detector/${actionType.toLowerCase().replace('action', '')}`;
+    return `${environment.apiUrl}/api/detector/${actionType.toLowerCase().replace('detector', '')}`;
   }
 
   private loadAll() {
@@ -35,13 +35,21 @@ export class DetectorsService {
   }
 
   save(detector: Detector): Observable<Detector> | undefined {
-    console.log('POST: '+this.getUrl(detector));
+    console.log('POST: ' + this.getUrl(detector));
     return undefined;
   }
 
   update(detector: Detector): Observable<void> | undefined {
-    console.log('PUT: '+this.getUrl(detector));
-
-    return undefined;
+    const url = this.getUrl(detector);
+    if (!url) return undefined;
+    console.log("PUT: " + url);
+    let detectorDto = {...detector, actionId: detector.action.id};
+    detectorDto.actionId = detector.action.id;
+    return this.http.put<void>(url, detectorDto).pipe(tap(() => {
+      let detectors = this.detectors.getValue();
+      const idx = detectors.findIndex(x => x.id === detector.id);
+      detectors[idx] = detector;
+      this.detectors.next(detectors);
+    }));
   }
 }
