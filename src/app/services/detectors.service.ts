@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Detector } from '../types/detector.type';
-import { DetectorType } from '../types/detectorType.type';
 
 @Injectable({
   providedIn: 'root'

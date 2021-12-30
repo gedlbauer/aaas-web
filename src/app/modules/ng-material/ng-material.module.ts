@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     declarations: [],
@@ -34,7 +35,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         MatSidenavModule,
         MatIconModule,
         MatListModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatPaginatorModule
     ],
     exports: [
         CommonModule,
@@ -53,7 +55,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         MatSidenavModule,
         MatIconModule,
         MatListModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatPaginatorModule
     ]
 })
 export class NgMaterialModule { }

@@ -5,6 +5,7 @@ import { ActionListComponent } from './components/action-list/action-list.compon
 import { DetectorDetailsComponent } from './components/detector-details/detector-details.component';
 import { DetectorListComponent } from './components/detector-list/detector-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogsComponent } from './components/logs/logs.component';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 
 const routes: Routes = [
@@ -18,10 +19,11 @@ const routes: Routes = [
     redirectTo: '',
     pathMatch: 'full'
   },
+  { path: 'logs', component: LogsComponent },
   { path: 'detectors/:id', component: DetectorDetailsComponent /*, canActivate: [IsLoggedInGuard]*/ },
   { path: 'detectors', component: DetectorListComponent /*, canActivate: [IsLoggedInGuard]*/ },
-  { path: 'actions/:id', component: ActionDetailsComponent /*, canActivate: [IsLoggedInGuard]*/},
-  { path: 'actions/new', component: ActionDetailsComponent /*, canActivate: [IsLoggedInGuard]*/},
+  { path: 'actions/:id', component: ActionDetailsComponent /*, canActivate: [IsLoggedInGuard]*/ },
+  { path: 'actions/new', component: ActionDetailsComponent /*, canActivate: [IsLoggedInGuard]*/ },
   { path: 'actions', component: ActionListComponent /*, canActivate: [IsLoggedInGuard]*/ },
   { path: 'login', component: LoginComponent }
 ];
