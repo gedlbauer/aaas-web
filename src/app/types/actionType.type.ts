@@ -1,0 +1,1 @@
+export type ActionType = 'WebHookAction' | 'MailAction' | undefined;

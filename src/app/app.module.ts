@@ -16,6 +16,7 @@ import { FormatMillisecondsPipe } from './pipes/format-milliseconds.pipe';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
 import { DetectorDetailsComponent } from './components/detector-details/detector-details.component';
 import { ActionDetailsComponent } from './components/action-details/action-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,13 +34,15 @@ import { ActionDetailsComponent } from './components/action-details/action-detai
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgMaterialModule,
     OAuthModule.forRoot(),
     AppRoutingModule,
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
