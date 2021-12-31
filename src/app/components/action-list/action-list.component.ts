@@ -4,7 +4,7 @@ import { ActionsService } from 'src/app/services/actions.service';
 import { Action } from 'src/app/types/action.type';
 
 @Component({
-  selector: 'app-action-list',
+  selector: 'aaas-action-list',
   templateUrl: './action-list.component.html',
   styleUrls: ['./action-list.component.scss']
 })

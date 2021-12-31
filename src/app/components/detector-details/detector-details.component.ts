@@ -10,7 +10,7 @@ import { MinMaxDetector } from 'src/app/types/minMaxDetector.type';
 import { SlidingWindowDetector } from 'src/app/types/slidingWindowDetector.type';
 
 @Component({
-  selector: 'app-detector-details',
+  selector: 'aaas-detector-details',
   templateUrl: './detector-details.component.html',
   styleUrls: ['./detector-details.component.scss']
 })

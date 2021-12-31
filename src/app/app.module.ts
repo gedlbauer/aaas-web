@@ -19,6 +19,8 @@ import { ActionDetailsComponent } from './components/action-details/action-detai
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogsComponent } from './components/logs/logs.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     DetectorDetailsComponent,
     ActionDetailsComponent,
     LogsComponent,
-    DashboardComponent
+    DashboardComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     NgMaterialModule,
     OAuthModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true},

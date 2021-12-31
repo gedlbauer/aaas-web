@@ -7,7 +7,7 @@ import { MailAction } from 'src/app/types/mailAction.type';
 import { WebHookAction } from 'src/app/types/webHookAction.type';
 
 @Component({
-  selector: 'app-action-details',
+  selector: 'aaas-action-details',
   templateUrl: './action-details.component.html',
   styleUrls: ['./action-details.component.scss']
 })

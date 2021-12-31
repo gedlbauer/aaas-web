@@ -5,4 +5,5 @@ export interface Log {
     name: string;
     creatorId: string;
     message: string;
+    typeName?: string;
 }

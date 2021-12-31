@@ -5,7 +5,7 @@ import { DetectorsService } from 'src/app/services/detectors.service';
 import { Detector } from 'src/app/types/detector.type';
 
 @Component({
-  selector: 'app-detector-list',
+  selector: 'aaas-detector-list',
   templateUrl: './detector-list.component.html',
   styleUrls: ['./detector-list.component.scss']
 })

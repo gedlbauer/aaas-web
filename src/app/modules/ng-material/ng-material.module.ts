@@ -15,6 +15,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
     declarations: [],
@@ -36,7 +37,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatIconModule,
         MatListModule,
         MatSlideToggleModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatGridListModule
     ],
     exports: [
         CommonModule,
@@ -56,7 +58,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatIconModule,
         MatListModule,
         MatSlideToggleModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatGridListModule
     ]
 })
 export class NgMaterialModule { }
