@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { EChartsOption } from 'echarts';
+import { Component, Input, OnInit } from '@angular/core';
+import { EChartsOption, ECharts } from 'echarts';
+import { MetricsService } from 'src/app/services/metrics.service';
 
 @Component({
   selector: 'aaas-chart',
@@ -8,9 +9,12 @@ import { EChartsOption } from 'echarts';
 })
 export class ChartComponent implements OnInit {
 
-  constructor() { }
+  @Input() metricName: string = '';
+
+  constructor(private metricsService: MetricsService) { }
 
   ngOnInit(): void {
+    let metrics = this.metricsService.getAll(this.metricName, 20).subscribe(x => console.log(x));
   }
 
   chartOption: EChartsOption = {
@@ -29,5 +33,8 @@ export class ChartComponent implements OnInit {
     ]
   };
 
+  onChartInit(chart: ECharts) {
+    
+  }
 
 }

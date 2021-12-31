@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MetricsService } from 'src/app/services/metrics.service';
 
 @Component({
   selector: 'aaas-dashboard',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  metricNames$: Observable<string[]>;
+  selectedMetrics: string[] = [];
+
+  constructor(metricsService: MetricsService) {
+    this.metricNames$ = metricsService.getNames();
+  }
 
   ngOnInit(): void {
   }

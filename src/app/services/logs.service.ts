@@ -15,22 +15,22 @@ export class LogsService {
     this.loadLogTypes();
   }
 
-  private logTypes$: BehaviorSubject<LogType[]> = new BehaviorSubject<LogType[]>([]);
+  private logTypes: BehaviorSubject<LogType[]> = new BehaviorSubject<LogType[]>([]);
 
   getFiltered(logName?: string): Observable<Log[]> {
     const filter = logName && logName.trim().length !== 0 ? `?name=${logName}` : '';
     return this.http.get<Log[]>(`${environment.apiUrl}/api/logs${filter}`).pipe(
-      withLatestFrom(this.logTypes$),
+      withLatestFrom(this.logTypes),
       map(tuple => tuple[0].map(log => { return { ...log, typeName: tuple[1].find(x => x.id === log.typeId)?.name ?? 'Other' } })),
     );
   }
 
   private loadLogTypes(): void {
     this.http.get<LogType[]>(`${environment.apiUrl}/api/logs/types`)
-      .subscribe(x => this.logTypes$.next(x));
+      .subscribe(x => this.logTypes.next(x));
   }
 
   getLogTypes(): Observable<LogType[]> {
-    return this.logTypes$;
+    return this.logTypes;
   }
 }

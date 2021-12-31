@@ -1,1 +1,2 @@
-<div echarts [options]="chartOption" class="chart"></div>
+<h2>{{metricName}}</h2>
+<div echarts [options]="chartOption" class="chart" (chartInit)="onChartInit($event)"></div>

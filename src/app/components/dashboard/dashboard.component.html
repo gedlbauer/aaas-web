@@ -1,7 +1,11 @@
+<mat-form-field appearance="outline">
+    <mat-label>Metrics to show</mat-label>
+    <mat-select multiple [(value)]="selectedMetrics">
+        <mat-option *ngFor="let metricName of metricNames$|async" [value]="metricName">{{metricName}}</mat-option>
+    </mat-select>
+</mat-form-field>
 <mat-grid-list cols="3" rowHeight="400">
-    <mat-grid-tile><aaas-chart></aaas-chart></mat-grid-tile>
-    <mat-grid-tile><aaas-chart></aaas-chart></mat-grid-tile>
-    <mat-grid-tile><aaas-chart></aaas-chart></mat-grid-tile>
-    <mat-grid-tile><aaas-chart></aaas-chart></mat-grid-tile>
-    <mat-grid-tile><aaas-chart></aaas-chart></mat-grid-tile>
+    <mat-grid-tile *ngFor="let metricName of selectedMetrics">
+        <aaas-chart [metricName]="metricName"></aaas-chart>
+    </mat-grid-tile>
 </mat-grid-list>
