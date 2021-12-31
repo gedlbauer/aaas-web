@@ -18,6 +18,7 @@ import { DetectorDetailsComponent } from './components/detector-details/detector
 import { ActionDetailsComponent } from './components/action-details/action-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogsComponent } from './components/logs/logs.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LogsComponent } from './components/logs/logs.component';
     ClickStopPropagationDirective,
     DetectorDetailsComponent,
     ActionDetailsComponent,
-    LogsComponent
+    LogsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
