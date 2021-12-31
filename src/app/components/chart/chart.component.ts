@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption, ECharts } from 'echarts';
+import { map } from 'rxjs';
 import { MetricsService } from 'src/app/services/metrics.service';
 
 @Component({
@@ -14,10 +15,10 @@ export class ChartComponent implements OnInit {
   constructor(private metricsService: MetricsService) { }
 
   ngOnInit(): void {
-    let metrics = this.metricsService.getAll(this.metricName, 20).subscribe(x => console.log(x));
+
   }
 
-  chartOption: EChartsOption = {
+  chartOption: any = {
     xAxis: {
       type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -34,7 +35,16 @@ export class ChartComponent implements OnInit {
   };
 
   onChartInit(chart: ECharts) {
-    
+
+    this.metricsService.getAll(this.metricName, 20).pipe(map(x => x.map(y => y.value))).subscribe(x => {
+      if (this.chartOption.series) {
+        this.chartOption.series[0].data = x;
+      }
+      chart.setOption(this.chartOption);
+      // TODO: anzeigebug (immer nur letzte 7 werden angezeigt)
+      // TODO: xaxis formatieren (behebt wahrscheinlich anzeigebug)
+      // TODO: andere Chart typen
+    });
   }
 
 }

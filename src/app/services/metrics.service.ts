@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Metric } from '../types/metric.type';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class MetricsService {
     return this.metricNames;
   }
 
-  getAll(metricName?: string, amount?: number) {
+  getAll(metricName?: string, amount?: number): Observable<Metric[]> {
     let params: string[] = [];
     if (metricName) {
       params.push(`name=${metricName}`);
@@ -33,7 +34,7 @@ export class MetricsService {
 
     const paramString = params.length > 0 ? `?${params.join('&')}` : '';
 
-    return this.http.get<string[]>(`${environment.apiUrl}/api/metrics${paramString}`);
+    return this.http.get<Metric[]>(`${environment.apiUrl}/api/metrics${paramString}`);
   }
 
 }
