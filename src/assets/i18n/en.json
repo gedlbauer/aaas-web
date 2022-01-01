@@ -12,5 +12,8 @@
     "requestUrlInvalid": "This is no valid URL!"
   },
   "save": "Save",
-  "actionName": "Action Name"
+  "actionName": "Action Name",
+  "detectors": "Detectors",
+  "actions": "Actions",
+  "logs": "Logs"
 }

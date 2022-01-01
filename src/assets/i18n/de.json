@@ -12,5 +12,8 @@
     "requestUrlInvalid": "Das ist keine gültige URL!"
   },
   "save": "Speichern",
-  "actionName": "Aktionsname"
+  "actionName": "Aktionsname",
+  "logs": "Logs",
+  "actions": "Aktionen",
+  "detectors": "Detektoren"
 }

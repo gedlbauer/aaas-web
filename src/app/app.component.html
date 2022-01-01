@@ -1,22 +1,16 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+  <button mat-icon-button class="burger-icon" (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   <span>{{title}}</span>
   <span class="spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
 </mat-toolbar>
 <mat-drawer-container class="drawer-container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <mat-nav-list>
-      <a mat-list-item routerLink="/detectors" routerLinkActive="active-list-item">Detektoren</a>
-      <a mat-list-item routerLink="/actions">Aktionen</a>
-      <a mat-list-item routerLink="/logs">Logs</a>
+      <a mat-list-item routerLink="/detectors" routerLinkActive="active-list-item">{{ 'detectors' | translate }}</a>
+      <a mat-list-item routerLink="/actions">{{ 'actions' | translate }}</a>
+      <a mat-list-item routerLink="/logs">{{ 'logs' | translate }}</a>
     </mat-nav-list>
   </mat-drawer>
 
