@@ -22,5 +22,14 @@
   "chartType": "Chart type",
   "bar": "Bar",
   "line": "Line",
-  "scatter": "Scatter"
+  "scatter": "Scatter",
+  "detector": {
+    "type": "Type",
+    "telemetryName": "Telemetry Name",
+    "checkInterval": "Check interval",
+    "active": "Active"
+  },
+  "aaas-web-login": "AaaS Web Login",
+  "loginError": "Sorry, we could not log you in.",
+  "login": "Login"
 }

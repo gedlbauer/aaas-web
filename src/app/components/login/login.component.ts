@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -11,7 +12,11 @@ export class LoginComponent implements OnInit {
 
   private returnTo = '';
 
-  constructor(private auth: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private auth: AuthenticationService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => this.returnTo = params['returnUrl']);
@@ -21,7 +26,8 @@ export class LoginComponent implements OnInit {
     if (this.auth.login()) {
       this.router.navigateByUrl(this.returnTo);
     } else {
-      // TODO error message
+      this.translate.instant('loginError')
+      alert();
     }
   }
 

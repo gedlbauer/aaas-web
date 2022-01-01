@@ -22,5 +22,14 @@
   "chartType": "Diagrammtyp",
   "bar": "Säulen",
   "line": "Linie",
-  "scatter": "Punkte"
+  "scatter": "Punkte",
+  "detector": {
+    "type": "Typ",
+    "telemetryName": "Telemetriename",
+    "checkInterval": "Prüfintervall",
+    "active": "Aktiv"
+  },
+  "aaas-web-login": "AaaS Web Login",
+  "loginError": "Entschuldigung, wir konnten dich nicht einloggen!",
+  "login": "Einloggen"
 }
