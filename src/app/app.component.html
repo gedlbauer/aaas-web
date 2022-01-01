@@ -1,13 +1,18 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="burger-icon" (click)="drawer.toggle()">
+  <button mat-icon-button class="burger-icon" (click)="drawer.toggle()" *ngIf="auth.isLoggedIn()">
     <mat-icon>menu</mat-icon>
   </button>
   <span>{{title}}</span>
+  
   <span class="spacer"></span>
+  <button mat-button class="burger-icon" (click)="logout()" *ngIf="auth.isLoggedIn()">
+    <mat-icon>logout</mat-icon> Logout
+  </button>
 </mat-toolbar>
 <mat-drawer-container class="drawer-container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-list-item">{{ 'dashboard' | translate }}</a>
       <a mat-list-item routerLink="/detectors" routerLinkActive="active-list-item">{{ 'detectors' | translate }}</a>
       <a mat-list-item routerLink="/actions">{{ 'actions' | translate }}</a>
       <a mat-list-item routerLink="/logs">{{ 'logs' | translate }}</a>

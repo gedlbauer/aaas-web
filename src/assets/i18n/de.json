@@ -39,5 +39,6 @@
     "type": "Typ",
     "time": "Zeitpunkt",
     "message": "Nachricht"
-  }
+  },
+  "dashboard": "Dashboard"
 }

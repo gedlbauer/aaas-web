@@ -40,13 +40,5 @@
     "time": "Time",
     "message": "Message"
   },
-  "mat-paginator": {
-    "ITEMS_PER_PAGE_LABEL": "Počet řádků:",
-    "NEXT_PAGE_LABEL": "Další stránka",
-    "PREVIOUS_PAGE_LABEL": "Předchozí stránka",
-    "FIRST_PAGE_LABEL": "První stránka",
-    "LAST_PAGE_LABEL": "Poslední stránka",
-    "RANGE_PAGE_LABEL_1": "0 z {{length}}",
-    "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} z {{length}}"
-  }
+  "dashboard": "Dashboard"
 }

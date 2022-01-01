@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
+import { AuthenticationService } from './services/authentication.service';
 
 
 @Component({
@@ -13,12 +14,15 @@ export class AppComponent {
   title = 'Analytics as a Service';
   showFiller = false;
 
-  constructor(private oauthService: OAuthService, translate: TranslateService) {
+  constructor(private oauthService: OAuthService, translate: TranslateService, public auth: AuthenticationService) {
     this.configureWithNewConfigApi();
     translate.addLangs(['de', 'en']);
     translate.use(translate.getBrowserLang() ?? translate.getDefaultLang());
     console.log(translate.currentLang);
-    
+  }
+
+  logout(){
+    this.oauthService.logOut();
   }
 
   private configureWithNewConfigApi() {

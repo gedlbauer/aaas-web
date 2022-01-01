@@ -20,13 +20,13 @@ const routes: Routes = [
     redirectTo: '',
     pathMatch: 'full'
   },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'logs', component: LogsComponent },
-  { path: 'detectors/:id', component: DetectorDetailsComponent /*, canActivate: [IsLoggedInGuard]*/ },
-  { path: 'detectors', component: DetectorListComponent /*, canActivate: [IsLoggedInGuard]*/ },
-  { path: 'actions/:id', component: ActionDetailsComponent /*, canActivate: [IsLoggedInGuard]*/ },
-  { path: 'actions/new', component: ActionDetailsComponent /*, canActivate: [IsLoggedInGuard]*/ },
-  { path: 'actions', component: ActionListComponent /*, canActivate: [IsLoggedInGuard]*/ },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'logs', component: LogsComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'detectors/:id', component: DetectorDetailsComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'detectors', component: DetectorListComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'actions/:id', component: ActionDetailsComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'actions/new', component: ActionDetailsComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'actions', component: ActionListComponent, canActivate: [IsLoggedInGuard] },
   { path: 'login', component: LoginComponent }
 ];
 
