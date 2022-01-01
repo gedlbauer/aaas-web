@@ -4,7 +4,7 @@
         <mat-option *ngFor="let metricName of metricNames$|async" [value]="metricName">{{metricName}}</mat-option>
     </mat-select>
 </mat-form-field>
-<mat-grid-list cols="3" rowHeight="400">
+<mat-grid-list cols="3" rowHeight="600">
     <mat-grid-tile *ngFor="let metricName of selectedMetrics">
         <aaas-chart [metricName]="metricName"></aaas-chart>
     </mat-grid-tile>

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption, ECharts } from 'echarts';
 import { map } from 'rxjs';
 import { MetricsService } from 'src/app/services/metrics.service';
+import { ChartType, CHART_TYPES } from 'src/app/types/chartType.type';
 
 @Component({
   selector: 'aaas-chart',
@@ -11,36 +12,51 @@ import { MetricsService } from 'src/app/services/metrics.service';
 export class ChartComponent implements OnInit {
 
   @Input() metricName: string = '';
+  CHART_TYPES = CHART_TYPES;
+  selectedChartType: ChartType = 'bar';
+  chart?: ECharts;
 
   constructor(private metricsService: MetricsService) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {  }
 
   chartOption: any = {
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      labels: {
+        enabled: false
+      },
+      data: ['']
     },
     yAxis: {
       type: 'value'
     },
     series: [
       {
-        data: [120, 200, 150, 80, 70, 110, 130],
-        type: 'bar'
+        data: [0],
+        type: 'line'
       }
     ]
   };
 
-  onChartInit(chart: ECharts) {
+  updateChartType(): void {
+    if (this.chartOption.series) {
+      this.chartOption.series[0].type = this.selectedChartType;
+      this.chart?.setOption(this.chartOption);
+    }
+  }
 
-    this.metricsService.getAll(this.metricName, 20).pipe(map(x => x.map(y => y.value))).subscribe(x => {
+  onChartInit(chart: ECharts) {
+    this.chart = chart;
+    chart.showLoading();
+    this.metricsService.getAll(this.metricName, 20).subscribe(x => {
       if (this.chartOption.series) {
-        this.chartOption.series[0].data = x;
+        this.chartOption.xAxis.data = x.map(y => new Date(y.timestamp).toLocaleString());
+        this.chartOption.series[0].data = x.map(y => y.value);
+        this.chartOption.series[0].type = this.selectedChartType;
       }
       chart.setOption(this.chartOption);
+      chart.hideLoading();
       // TODO: anzeigebug (immer nur letzte 7 werden angezeigt)
       // TODO: xaxis formatieren (behebt wahrscheinlich anzeigebug)
       // TODO: andere Chart typen
