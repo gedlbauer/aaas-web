@@ -1,0 +1,16 @@
+{
+  "action": {
+    "nameError": "Die Aktion braucht einen Namen!",
+    "name": "Name",
+    "email": "Email",
+    "emailRequired": "Geben Sie eine Email Adresse an!",
+    "invalidEmail": "Das ist keine gültige Email Adresse!",
+    "mailContent": "Mail Inhalt",
+    "mailContentRequired": "Geben Sie den Inhalt der Email an!",
+    "requestUrl": "Request URL",
+    "requestUrlRequired": "Geben Sie die aufzurufende URL ein!",
+    "requestUrlInvalid": "Das ist keine gültige URL!"
+  },
+  "save": "Speichern",
+  "actionName": "Aktionsname"
+}

@@ -1,0 +1,16 @@
+{
+  "action": {
+    "name": "Name",
+    "nameError": "The action needs a name!",
+    "email": "Email",
+    "emailRequired": "Enter an email address!",
+    "invalidEmail": "This is no valid email address!",
+    "mailContent": "Mail content",
+    "mailContentRequired": "Enter a mail content!",
+    "requestUrl": "Request URL",
+    "requestUrlRequired": "Enter an URL to be called!",
+    "requestUrlInvalid": "This is no valid URL!"
+  },
+  "save": "Save",
+  "actionName": "Action Name"
+}

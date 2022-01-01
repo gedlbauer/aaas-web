@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "angular-oauth2-oidc": "^13.0.1",
     "echarts": "^5.2.2",
     "ngx-echarts": "^8.0.1",

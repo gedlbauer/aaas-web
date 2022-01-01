@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EChartsOption, ECharts } from 'echarts';
-import { map } from 'rxjs';
+import { ECharts } from 'echarts';
 import { MetricsService } from 'src/app/services/metrics.service';
 import { ChartType, CHART_TYPES } from 'src/app/types/chartType.type';
 
