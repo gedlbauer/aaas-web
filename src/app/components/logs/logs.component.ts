@@ -31,6 +31,7 @@ export class LogsComponent implements OnInit, AfterViewInit {
       tap(() => this.isLoading = false)
     );
   }
+
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator ?? null;
   }

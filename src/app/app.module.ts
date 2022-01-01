@@ -21,7 +21,7 @@ import { LogsComponent } from './components/logs/logs.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ChartComponent } from './components/chart/chart.component';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({

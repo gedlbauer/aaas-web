@@ -31,5 +31,13 @@
   },
   "aaas-web-login": "AaaS Web Login",
   "loginError": "Entschuldigung, wir konnten dich nicht einloggen!",
-  "login": "Einloggen"
+  "login": "Einloggen",
+  "log": {
+    "filterByName": "Filter nach Name",
+    "typeHere": "Hier tippen",
+    "name": "Name",
+    "type": "Typ",
+    "time": "Zeitpunkt",
+    "message": "Nachricht"
+  }
 }
