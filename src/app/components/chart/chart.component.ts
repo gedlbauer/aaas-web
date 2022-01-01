@@ -57,9 +57,6 @@ export class ChartComponent implements OnInit {
       }
       chart.setOption(this.chartOption);
       chart.hideLoading();
-      // TODO: anzeigebug (immer nur letzte 7 werden angezeigt)
-      // TODO: xaxis formatieren (behebt wahrscheinlich anzeigebug)
-      // TODO: andere Chart typen
     });
   }
 
