@@ -1,8 +1,8 @@
 <h2>{{metricName}}</h2>
 <mat-form-field appearance="outline">
-    <mat-label>Metrics to show</mat-label>
+    <mat-label>{{ 'chartType' | translate }}</mat-label>
     <mat-select [(value)]="selectedChartType" (valueChange)="updateChartType()">
-        <mat-option *ngFor="let chartType of CHART_TYPES" [value]="chartType">{{chartType}}</mat-option>
+        <mat-option *ngFor="let chartType of CHART_TYPES" [value]="chartType">{{chartType | translate}}</mat-option>
     </mat-select>
 </mat-form-field>
 <div echarts [options]="chartOption" class="chart" (chartInit)="onChartInit($event)"></div>

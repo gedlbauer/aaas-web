@@ -15,5 +15,12 @@
   "actionName": "Aktionsname",
   "logs": "Logs",
   "actions": "Aktionen",
-  "detectors": "Detektoren"
+  "detectors": "Detektoren",
+  "metrics": {
+    "toShow": "Anzuzeigende Metriken"
+  },
+  "chartType": "Diagrammtyp",
+  "bar": "Säulen",
+  "line": "Linie",
+  "scatter": "Punkte"
 }

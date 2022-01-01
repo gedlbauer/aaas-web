@@ -15,5 +15,12 @@
   "actionName": "Action Name",
   "detectors": "Detectors",
   "actions": "Actions",
-  "logs": "Logs"
+  "logs": "Logs",
+  "metrics": {
+    "toShow": "Metrics to show"
+  },
+  "chartType": "Chart type",
+  "bar": "Bar",
+  "line": "Line",
+  "scatter": "Scatter"
 }
