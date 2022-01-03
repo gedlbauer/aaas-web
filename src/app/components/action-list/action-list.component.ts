@@ -12,7 +12,7 @@ import { FabButtonIcon } from '../speed-dial-fab/fab-button-icon.type';
 })
 export class ActionListComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'more'];
+  displayedColumns: string[] = ['actionType', 'name', 'more'];
   addableActions: FabButtonIcon[] = ACTION_TYPES.map(x => {
     return {
       title: x,

@@ -9,7 +9,8 @@
     "mailContentRequired": "Enter a mail content!",
     "requestUrl": "Request URL",
     "requestUrlRequired": "Enter an URL to be called!",
-    "requestUrlInvalid": "This is no valid URL!"
+    "requestUrlInvalid": "This is no valid URL!",
+    "type": "Type"
   },
   "save": "Save",
   "actionName": "Action Name",

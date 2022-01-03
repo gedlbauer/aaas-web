@@ -1,4 +1,9 @@
 <table mat-table *ngIf="actions$" [dataSource]="actions$">
+    <ng-container matColumnDef="actionType">
+        <th mat-header-cell *matHeaderCellDef> {{ 'action.type' | translate }} </th>
+        <td mat-cell *matCellDef="let element"> {{element.typeName | translate}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> {{ 'actionName' | translate }} </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>

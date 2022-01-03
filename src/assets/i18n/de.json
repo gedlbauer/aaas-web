@@ -9,7 +9,8 @@
     "mailContentRequired": "Geben Sie den Inhalt der Email an!",
     "requestUrl": "Request URL",
     "requestUrlRequired": "Geben Sie die aufzurufende URL ein!",
-    "requestUrlInvalid": "Das ist keine gültige URL!"
+    "requestUrlInvalid": "Das ist keine gültige URL!",
+    "type": "Typ"
   },
   "save": "Speichern",
   "actionName": "Aktionsname",

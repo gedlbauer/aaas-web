@@ -1,7 +1,7 @@
 <table mat-table *ngIf="detectors$" [dataSource]="detectors$">
   <ng-container matColumnDef="detectorType">
     <th mat-header-cell *matHeaderCellDef> {{ 'detector.type' | translate }} </th>
-    <td mat-cell *matCellDef="let element"> {{element.typeName}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.typeName | translate}} </td>
   </ng-container>
 
   <ng-container matColumnDef="telemetryName">
