@@ -16,6 +16,7 @@
   "actionName": "Action Name",
   "detectors": "Detectors",
   "actions": "Actions",
+  "actionTerm": "Action",
   "logs": "Logs",
   "metrics": {
     "toShow": "Metrics to show"
@@ -27,8 +28,24 @@
   "detector": {
     "type": "Type",
     "telemetryName": "Telemetry Name",
-    "checkInterval": "Check interval",
-    "active": "Active"
+    "checkInterval": "Check Interval  [ms]",
+    "active": "Active",
+    "telemetryRequired": "The detector needs a name!",
+    "min": "Min",
+    "max": "Max",
+    "MaxOccurs": "Max Occurs",
+    "timeWindow": "Time Window to check [ms]",
+    "useGreater": "Use greater Comparison?",
+    "threshold": "Threshold",
+    "checkIntervalRequired": "Enter check interval in ms!",
+    "checkIntervalMin": "The value must be greater than {{minVal}} ms!",
+    "minRequired": "Enter a min value!",
+    "maxValueRequired": "Enter a max value!",
+    "maxOccursRequired": "Enter a value!",
+    "timeWindowRequired": "Enter a timespan in ms!",
+    "useGreaterRequired": "Enter a value!",
+    "thresholdRequired": "Enter a threshold!",
+    "timeWindowMin": "The value must be greater than {{minVal}} ms!"
   },
   "aaas-web-login": "AaaS Web Login",
   "loginError": "Sorry, we could not log you in.",

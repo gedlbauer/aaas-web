@@ -16,7 +16,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
     declarations: [],
@@ -40,7 +42,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
         MatSlideToggleModule,
         MatPaginatorModule,
         MatGridListModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatCheckboxModule
     ],
     exports: [
         CommonModule,
@@ -62,7 +65,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
         MatSlideToggleModule,
         MatPaginatorModule,
         MatGridListModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatCheckboxModule
     ]
 })
 export class NgMaterialModule { }
