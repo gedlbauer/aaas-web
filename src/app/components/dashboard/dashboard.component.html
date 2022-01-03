@@ -4,6 +4,7 @@
         <mat-option *ngFor="let metricName of metricNames$|async" [value]="metricName">{{metricName}}</mat-option>
     </mat-select>
 </mat-form-field>
+<h1 class="loading-animation" *ngIf="selectedMetrics.length === 0">{{ 'selectMetricsToShow' | translate }}</h1>
 <mat-grid-list cols="3" rowHeight="600">
     <mat-grid-tile *ngFor="let metricName of selectedMetrics">
         <aaas-chart [metricName]="metricName"></aaas-chart>

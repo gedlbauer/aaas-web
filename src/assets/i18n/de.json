@@ -47,5 +47,6 @@
   "AverageSlidingWindowDetector": "Durchschnitt",
   "SumSlidingWindowDetector": "Summe",
   "WebHookAction": "Web Hook",
-  "MailAction": "Email"
+  "MailAction": "Email",
+  "selectMetricsToShow": "Wählen Sie die anzuzeigenden Metriken"
 }
