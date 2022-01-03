@@ -40,5 +40,11 @@
     "time": "Zeitpunkt",
     "message": "Nachricht"
   },
-  "dashboard": "Dashboard"
+  "dashboard": "Dashboard",
+  "MinMaxDetector": "Min/Max",
+  "CurrentValueSlidingWindowDetector": "Aktueller Wert",
+  "AverageSlidingWindowDetector": "Durchschnitt",
+  "SumSlidingWindowDetector": "Summe",
+  "WebHookAction": "Web Hook",
+  "MailAction": "Email"
 }

@@ -110,7 +110,7 @@ export class DetectorDetailsComponent implements OnInit {
   submitForm() {
     const detector = this.myForm.value;
     if (this.create) {
-      this.detectorsService.save(detector);
+      this.detectorsService.save(detector)?.subscribe(() => this.router.navigate(['/detectors']));
     } else {
       this.detectorsService.update(detector)?.subscribe(() => this.router.navigate(['/detectors']));
     }

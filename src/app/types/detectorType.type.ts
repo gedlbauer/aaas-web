@@ -1,1 +1,3 @@
-export type DetectorType = 'SumSlidingWindowDetector' | 'AverageSlidingWindowDetector' | 'CurrentValueSlidingWindowDetector' | 'MinMaxDetector';
+export const DETECTOR_TYPES = ['SumSlidingWindowDetector', 'AverageSlidingWindowDetector', 'CurrentValueSlidingWindowDetector', 'MinMaxDetector'] as const;
+type DetectorTuple = typeof DETECTOR_TYPES; // readonly ['SumSlidingWindowDetector', 'AverageSlidingWindowDetector', 'CurrentValueSlidingWindowDetector', 'MinMaxDetector']
+export type DetectorType = DetectorTuple[number];  // 'SumSlidingWindowDetector' | 'AverageSlidingWindowDetector' | 'CurrentValueSlidingWindowDetector' | 'MinMaxDetector'

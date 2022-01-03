@@ -41,7 +41,11 @@ export class ActionsService {
     const url = this.getUrl(action);
     if (!url) return undefined;
     console.log("POST: " + url)
-    return this.http.post<Action>(url, action);
+    return this.http.post<Action>(url, action).pipe(tap(insertedAction => {
+      let actions = this.actions.getValue();
+      actions.push(insertedAction);
+      this.actions.next(actions);
+    }));
   }
 
   update(action: Action): Observable<void> | undefined {

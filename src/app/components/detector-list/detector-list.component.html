@@ -43,3 +43,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row class="detector-row" *matRowDef="let row; columns: displayedColumns;" [routerLink]="row.id"></tr>
 </table>
+<aaas-speed-dial-fab [items]="addableDetectors"></aaas-speed-dial-fab>

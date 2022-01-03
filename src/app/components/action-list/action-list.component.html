@@ -13,7 +13,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row class="detector-row" *matRowDef="let row; columns: displayedColumns;" [routerLink]="['.',row.id]"></tr>
 </table>
-<a mat-fab color="accent" routerLink="new"
-    style="position:absolute; bottom: 30px; right: 30px">
-    <mat-icon>add</mat-icon>
-</a>
+<aaas-speed-dial-fab [items]="addableActions"></aaas-speed-dial-fab>

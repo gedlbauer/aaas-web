@@ -38,16 +38,22 @@ export class DetectorsService {
   }
 
   save(detector: Detector): Observable<Detector> | undefined {
+    const url = this.getUrl(detector);
+    if (!url) return undefined;
     console.log('POST: ' + this.getUrl(detector));
-    return undefined;
+    const detectorDto = { ...detector, actionId: detector.action?.id };
+    return this.http.post<Detector>(url, detectorDto).pipe(tap(insertedDetector => {
+      let detectors = this.detectors.getValue();
+      detectors.push(insertedDetector)
+      this.detectors.next(detectors);
+    }));
   }
 
   update(detector: Detector): Observable<void> | undefined {
     const url = this.getUrl(detector);
     if (!url) return undefined;
     console.log("PUT: " + url);
-    let detectorDto = {...detector, actionId: detector.action?.id};
-    detectorDto.actionId = detector.action?.id;
+    const detectorDto = { ...detector, actionId: detector.action?.id };
     return this.http.put<void>(url, detectorDto).pipe(tap(() => {
       let detectors = this.detectors.getValue();
       const idx = detectors.findIndex(x => x.id === detector.id);

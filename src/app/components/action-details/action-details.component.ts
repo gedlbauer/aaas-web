@@ -74,7 +74,7 @@ export class ActionDetailsComponent implements OnInit {
   submitForm() {
     const action = this.myForm.value;
     if (this.create) {
-      this.actionsService.save(action);
+      this.actionsService.save(action)?.subscribe(() => this.router.navigate(['/actions']));
     } else {
       this.actionsService.update(action)?.subscribe(() => this.router.navigate(['/actions']));
     }

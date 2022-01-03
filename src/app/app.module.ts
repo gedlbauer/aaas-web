@@ -23,6 +23,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { ChartComponent } from './components/chart/chart.component';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SpeedDialFabComponent } from './components/speed-dial-fab/speed-dial-fab.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     ActionDetailsComponent,
     LogsComponent,
     DashboardComponent,
-    ChartComponent
+    ChartComponent,
+    SpeedDialFabComponent
   ],
   imports: [
     BrowserModule,
