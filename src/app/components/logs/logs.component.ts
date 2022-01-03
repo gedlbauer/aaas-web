@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { debounceTime, distinctUntilChanged, Observable, switchMap, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable, Subscription, switchMap, tap } from 'rxjs';
 import { LogsService } from 'src/app/services/logs.service';
 import { Log } from 'src/app/types/log.type';
 import { LogType } from 'src/app/types/logType.type';
@@ -11,7 +11,9 @@ import { LogType } from 'src/app/types/logType.type';
   templateUrl: './logs.component.html',
   styleUrls: ['./logs.component.scss']
 })
-export class LogsComponent implements OnInit, AfterViewInit {
+export class LogsComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  subscriptions: Subscription[] = [];
   logs$: Observable<Log[]>;
   logTypes$: Observable<LogType[]>;
   displayedColumns: string[] = ['name', 'typeId', 'timestamp', 'message'];
@@ -32,12 +34,16 @@ export class LogsComponent implements OnInit, AfterViewInit {
     );
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator ?? null;
   }
 
   ngOnInit(): void {
-    this.logs$.subscribe(x => this.dataSource.data = x);
+    this.subscriptions.push(this.logs$.subscribe(x => this.dataSource.data = x));
     this.keyup.emit();
   }
 
