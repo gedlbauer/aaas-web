@@ -1,7 +1,7 @@
 # Analytics as a Service
 > Andreas Pramendorfer, Georg Edlbauer
 
-## Aufwand
+## Aufwand (SWK)
 
 ### Ausbaustufe 1
 Georg Edlbauer: 18h
@@ -188,3 +188,6 @@ Nun kann die API gestartet werden. Nach dem starten ist unter [localhost](https:
 Um das Erstellen von Telemetriedaten zu testen, kann der Demo Client gestartet werden. Dieser ist eine Konsolenanwendung, welche nur unter Windows lauffähig ist. 
 
 **ACHTUNG:** Der Demo Client funktioniert nur, wenn die API auf der lokalen Maschiene läuft. 
+
+# AaaS Web
+> Georg Edlbauer (s2010307058)
