@@ -3,7 +3,6 @@
     <mat-icon [@fabToggler]="{value: fabTogglerState}">add</mat-icon>
   </button>
   <div [@speedDialStagger]="buttons.length">
-    <!-- and here -->
     <a *ngFor="let btn of buttons" mat-button class="fab-secondary" color="secondary" [routerLink]="['.', btn.url]">
       {{btn.title | translate}}
     </a>
