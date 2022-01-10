@@ -250,4 +250,4 @@ this.logs$ = this.keyup.pipe(
 );
 ```
 
-Auf die Änderungen wird mit einem EventEmitter gehört, jedoch mit einer Abklingzeit von 500ms. So werden unnötige API-Aufrufe und somit Netzwerk-Traffic gespart, solange der Benutzer noch tippt. Ist die Eingabe gleich, so wird die Pipeline ebenfalls abgebrochen und kein API-Call abgesetzt. Mit `switchMap` wird die Eingabe dann über den API-Call auf die entsprechende Liste von Logs gemappt.
+Auf die Änderungen wird mit einem EventEmitter gehört, jedoch mit einer Abklingzeit von 500ms. So werden unnötige API-Aufrufe und somit Netzwerk-Traffic gespart, solange der Benutzer noch tippt. Ist die Eingabe gleich, so wird die Pipeline ebenfalls abgebrochen und kein API-Call abgesetzt. Mit `switchMap` wird die Eingabe dann über den API-Call auf die entsprechende Liste von Logs gemappt. Auf das Observable `logs$` wird dann in `ngOnInit` subscribed und bei neuen Werten die Tabelle aktualisiert.
