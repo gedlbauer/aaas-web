@@ -196,6 +196,7 @@ Um das UI modern zu gestalten wurde Angular Material verwendet. In Angular Mater
 
 ## Projektstruktur
 Die Projektstruktur des WEA-Projekts sieht wiefolgt aus:
+
 ![Projektstruktur WEA](/images/projektstruktur-wea.png)
 
 ## Authentifizierung
