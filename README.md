@@ -208,4 +208,5 @@ export interface Detector {
     checkInterval: number;
     isRunning: boolean;
     typeName?: DetectorType;
-}```
+}
+```
