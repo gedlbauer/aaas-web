@@ -229,8 +229,8 @@ Das Ein- und Ausschalten der Detektoren erfolgt direkt in der Liste über den To
 
 Clickt man auf einen Detektor in der Liste, gelangt man in die Detailansicht. Hier werden je nach Detektortyp die entsprechenden Properties geladen und in einem Reactive Form angezeigt, welches Dynamisch an den Detektor angepasst wird. Hierfür ist die Angular Komponente `DetectorDetails` zuständig.
 
-### Pipe FormatMilliSeconds
-Vom Backend wird die Zeitspanne der Detektoren als Millisekunden übergeben. Im Hintergrund soll im Frontend auch mit dem Wert in Millisekunden gearbeitet werden. Um die Anzeige jedoch für den Benutzer schöner darzustellen wurde die Pipe `FormatMilliSeconds` erstellt. Diese wandelt den numerischen Wert für die Anzeige in das Format `mm:ss.ms` um, was für Menschen einfacher interpretierbar ist als der direkte Wert in ms.
+### Pipe FormatMilliseconds
+Vom Backend wird die Zeitspanne der Detektoren als Millisekunden übergeben. Im Hintergrund soll im Frontend auch mit dem Wert in Millisekunden gearbeitet werden. Um die Anzeige jedoch für den Benutzer schöner darzustellen wurde die Pipe `FormatMilliseconds` erstellt. Diese wandelt den numerischen Wert für die Anzeige in das Format `mm:ss.ms` um, was für Menschen einfacher interpretierbar ist als der direkte Wert in ms.
 
 ## Verwaltung der Aktionen
 Die Verwaltung der Aktionen funktioniert analog zur Verwaltung der Detektoren über die Komponenten `ActionList` und `ActionDetails`. Das Ein- und Ausschalten fällt hierbei weg. Auch im interface `Action` wird wie bei `Detector` der Typ der Action mitgespeichert.
