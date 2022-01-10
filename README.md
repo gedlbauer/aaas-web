@@ -260,4 +260,12 @@ Um die Applikation in verschiedenen Ländern verfügbar zu machen, wurde Interna
 
 Per Konfiguration wurde festelegt, dass die Übersetzungen aus dem Ordner `assets/i18n/` geladen werden. Dabei muss für jede unterstützte Sprache eine JSON-Datei mit dem entsprechenden Sprachnamen erstellt werden. Für Demonstrationszwecke wurden nur die Sprachen Deutsch und Englisch (Files: `de.json` und `en.json`) übersetzt. Man könnte jedoch beliebige Sprachen übersetzen und einbinden.
 
-Dem TranslateModule muss bei Applikationsstart eine Standardsprache und eine Factory-Methode, die bestimmt, wie die Übersetzungen geladen werden, mitgegeben werden. In unserem Fall ein `HttpLoader`, welcher die Übersetzungen aus `assets/i18n/` lädt.
+Dem TranslateModule muss beim Import eine Standardsprache und eine Factory-Methode, die bestimmt, wie die Übersetzungen geladen werden, mitgegeben werden. In unserem Fall ein `HttpLoader`, welcher die Übersetzungen aus `assets/i18n/` lädt.
+
+Bei Applikationsstart muss das TranslateService, welche die Übersetzung übernimmt, konfiguriert werden. Es müssen die unterstützten Sprachen und die gewählte Sprache eingestellt werden. In unserem Fall ist das entweder die Browsersprache, oder die im TranslateModule angegebene Standardsprache, falls die Browsersprache nicht verfügbar ist.
+
+Nach den genannten Einstellungen ist in den HTML-Templates eine `translate` Pipe verfügbar. Diese nutzt den gegebenen String als Key und gibt die Übersetzung zurück. Soll beispielsweise "Speichern" übersetzt werden, welches in den Übersetzungsfiles mit dem Key "save" hinterlegt ist, genügt folgender Code im HTML-Template, um den übersetzten Text anzuzeigen:
+
+```html
+{{ 'save' | translate }}
+```
