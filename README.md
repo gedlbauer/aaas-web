@@ -194,3 +194,19 @@ Um das Erstellen von Telemetriedaten zu testen, kann der Demo Client gestartet w
 
 ## Authentifizierung
 Die Authentifizierung am Frontend erfolgt über den Identity Server von Manfred Steyer. Um die Routen der Anwendung zu schützen wurde ein Guard erstellt, welcher vor dem Aufrufen eines Links überprüft, ob der Benutzer für den Aufruf berechtigt ist. Die Authentifizierungslogik selbst ist in dem Service `AuthenticationService` implementiert. Dieses kapselt im Wesentlichen das OAuthService aus dem npm Package `angular-oauth2-oidc` von Manfred Steyer. Die Informationen über den zu verwendenden Identity Server sind in `auth.config.ts` enthalten.
+
+## Verwaltung der Detektoren
+In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden. 
+`
+import { Action } from "./action.type";
+import { DetectorType } from "./detectorType.type";
+
+export interface Detector { 
+    id: number;
+    action?: Action;
+    telemetryName: string;
+    checkInterval: number;
+    isRunning: boolean;
+    typeName?: DetectorType;
+}
+`
