@@ -196,7 +196,9 @@ Um das Erstellen von Telemetriedaten zu testen, kann der Demo Client gestartet w
 Die Authentifizierung am Frontend erfolgt über den Identity Server von Manfred Steyer. Um die Routen der Anwendung zu schützen wurde ein Guard erstellt, welcher vor dem Aufrufen eines Links überprüft, ob der Benutzer für den Aufruf berechtigt ist. Die Authentifizierungslogik selbst ist in dem Service `AuthenticationService` implementiert. Dieses kapselt im Wesentlichen das OAuthService aus dem npm Package `angular-oauth2-oidc` von Manfred Steyer. Die Informationen über den zu verwendenden Identity Server sind in `auth.config.ts` enthalten.
 
 ## Verwaltung der Detektoren
-In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden. 
+In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden.
+
+Der folgende Codeausschnitt zeigt das Interface Detektor, welches die Basis der Detektorliste bildet:
 ```typescript
 import { Action } from "./action.type";
 import { DetectorType } from "./detectorType.type";
@@ -210,3 +212,6 @@ export interface Detector {
     typeName?: DetectorType;
 }
 ```
+Das Ein- und Ausschalten der Detektoren erfolgt direkt in der Liste über den Toggle Switch. Da das Click-Event von dem Toggle-Switch nach oben propagiert wird, würde standardmäßig bei einem Klick auf den Toggle Switch auf die Detailseite weitergeleitet werden. Das ist hier nicht gewünscht. Bei einem Klick auf den Toggle Switch soll nur der Detektor geupdatet werden und weiter nichts passieren. Das wurde über die Direktive `ClickStopPropagation` gelöst, da hier kein eigenes Template benötigt wird, sondern nur die Verhaltensweise bestehender Komponenten verändert werden soll.
+
+Clickt man auf einen Detektor in der Liste, gelangt man in die Detailansicht. Hier werden je nach Detektortyp die entsprechenden Properties geladen und in einem Reactive Form angezeigt, welches Dynamisch an den Detektor angepasst wird. Hierfür ist die Angular Komponente `DetectorDetails` zuständig.
