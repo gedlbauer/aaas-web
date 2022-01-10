@@ -24,7 +24,6 @@ export class DetectorsService {
   }
 
   private loadAll() {
-    console.log("loadall");
     this.http.get<Detector[]>(`${environment.apiUrl}/api/detector`)
       .subscribe(result => this.detectors.next(result));
   }
@@ -40,7 +39,6 @@ export class DetectorsService {
   save(detector: Detector): Observable<Detector> | undefined {
     const url = this.getUrl(detector);
     if (!url) return undefined;
-    console.log('POST: ' + this.getUrl(detector));
     const detectorDto = { ...detector, actionId: detector.action?.id };
     return this.http.post<Detector>(url, detectorDto).pipe(tap(insertedDetector => {
       let detectors = this.detectors.getValue();
@@ -52,7 +50,6 @@ export class DetectorsService {
   update(detector: Detector): Observable<void> | undefined {
     const url = this.getUrl(detector);
     if (!url) return undefined;
-    console.log("PUT: " + url);
     const detectorDto = { ...detector, actionId: detector.action?.id };
     return this.http.put<void>(url, detectorDto).pipe(tap(() => {
       let detectors = this.detectors.getValue();

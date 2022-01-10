@@ -47,8 +47,4 @@ export class LogsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.keyup.emit();
   }
 
-  updateFilter(event: any) {
-    console.log(event)
-  }
-
 }

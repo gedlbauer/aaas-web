@@ -16,7 +16,6 @@ export class ActionsService {
   }
 
   private loadAll() {
-    console.log("loadall");
     this.http.get<Action[]>(`${environment.apiUrl}/api/action`)
       .subscribe(result => this.actions.next(result));
   }
@@ -40,7 +39,6 @@ export class ActionsService {
   save(action: Action): Observable<Action> | undefined {
     const url = this.getUrl(action);
     if (!url) return undefined;
-    console.log("POST: " + url)
     return this.http.post<Action>(url, action).pipe(tap(insertedAction => {
       let actions = this.actions.getValue();
       actions.push(insertedAction);
@@ -51,7 +49,6 @@ export class ActionsService {
   update(action: Action): Observable<void> | undefined {
     const url = this.getUrl(action);
     if (!url) return undefined;
-    console.log("PUT: " + url)
     return this.http.put<void>(url, action).pipe(tap(() => {
       let actions = this.actions.getValue();
       const idx = actions.findIndex(x => x.id === action.id);

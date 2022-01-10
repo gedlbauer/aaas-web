@@ -18,7 +18,6 @@ export class AppComponent {
     this.configureWithNewConfigApi();
     translate.addLangs(['de', 'en']);
     translate.use(translate.getBrowserLang() ?? translate.getDefaultLang());
-    console.log(translate.currentLang);
   }
 
   logout(){
