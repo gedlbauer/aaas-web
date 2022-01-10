@@ -215,3 +215,6 @@ export interface Detector {
 Das Ein- und Ausschalten der Detektoren erfolgt direkt in der Liste über den Toggle Switch. Da das Click-Event von dem Toggle-Switch nach oben propagiert wird, würde standardmäßig bei einem Klick auf den Toggle Switch auf die Detailseite weitergeleitet werden. Das ist hier nicht gewünscht. Bei einem Klick auf den Toggle Switch soll nur der Detektor geupdatet werden und weiter nichts passieren. Das wurde über die Direktive `ClickStopPropagation` gelöst, da hier kein eigenes Template benötigt wird, sondern nur die Verhaltensweise bestehender Komponenten verändert werden soll.
 
 Clickt man auf einen Detektor in der Liste, gelangt man in die Detailansicht. Hier werden je nach Detektortyp die entsprechenden Properties geladen und in einem Reactive Form angezeigt, welches Dynamisch an den Detektor angepasst wird. Hierfür ist die Angular Komponente `DetectorDetails` zuständig.
+
+## Verwaltung der Aktionen
+Die Verwaltung der Aktionen funktioniert analog zur Verwaltung der Detektoren über die Komponenten `ActionList` und `ActionDetails`. Das Ein- und Ausschalten fällt hierbei weg.
