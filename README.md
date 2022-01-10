@@ -208,6 +208,9 @@ Die Authentifizierung am Frontend erfolgt über den Identity Server von Manfred 
 ## Authentifizierung am Backend
 Die Authentifizierung am Backend erfolgt über einen API-Key, der im Header `X-Api-Key` übergeben werden muss. Da das bei allen API Calls benötigt wird, wurde ein HTTP Interceptor erstellt, welcher alle API Calls abfängt und den Header einfügt, bevor sie ans Backend übermittelt werden.
 
+## Dashboard
+Am Dashboard werden Metriken in form von Charts visualisiert. Welche Metriken angezeigt werden sollen, und wie die Charts aussehen sollen, kann der\*die Benutzer\*in selbst entscheiden. Hierfür werden bei Applikationsstart die unterschiedlichen Metrik-Arten abgerufen und in einer Dropdown-Liste angezeigt. Welcher Charttyp angezeigt wird kann pro ausgewählter Metrik separat gewählt werden. Hierfür wurde die Komponente `chart` erstellt. Für das Charting selbst wurde die Library "ECharts" von Apache gewählt
+
 ## Verwaltung der Detektoren
 In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden.
 
