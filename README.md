@@ -216,5 +216,7 @@ Das Ein- und Ausschalten der Detektoren erfolgt direkt in der Liste über den To
 
 Clickt man auf einen Detektor in der Liste, gelangt man in die Detailansicht. Hier werden je nach Detektortyp die entsprechenden Properties geladen und in einem Reactive Form angezeigt, welches Dynamisch an den Detektor angepasst wird. Hierfür ist die Angular Komponente `DetectorDetails` zuständig.
 
+Detektoren und Aktionen können über deren jeweilige Listenkomponente angelegt werden. Hierfür wurde ein Floating Action Button (FAB) gewählt, der als Speed Dial fungiert. Drückt man daruf, öffnet sich also eine Auswahl, welche Art von Detektor/Aktion angelegt werden soll.
+
 ## Verwaltung der Aktionen
 Die Verwaltung der Aktionen funktioniert analog zur Verwaltung der Detektoren über die Komponenten `ActionList` und `ActionDetails`. Das Ein- und Ausschalten fällt hierbei weg.
