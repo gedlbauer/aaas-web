@@ -254,3 +254,10 @@ this.logs$ = this.keyup.pipe(
 ```
 
 Auf die Änderungen wird mit einem EventEmitter gehört, jedoch mit einer Abklingzeit von 500ms. So werden unnötige API-Aufrufe und somit Netzwerk-Traffic gespart, solange der Benutzer noch tippt. Ist die Eingabe gleich, so wird die Pipeline ebenfalls abgebrochen und kein API-Call abgesetzt. Mit `switchMap` wird die Eingabe dann über den API-Call auf die entsprechende Liste von Logs gemappt. Auf das Observable `logs$` wird dann in `ngOnInit` subscribed und bei neuen Werten die Tabelle aktualisiert.
+
+## Internationalisierung
+Um die Applikation in verschiedenen Ländern verfügbar zu machen, wurde Internationalisierung (i18n) eingesetzt. Hierfür wurde das `TranslateModule` aus `@ngx-translate` verwendet. Die benötigten Übersetzungen werden in der Laufzeit per TranslateHttpLoader geladen, welcher ebenfalls in `@ngx-translate` enthalten ist.
+
+Per Konfiguration wurde festelegt, dass die Übersetzungen aus dem Ordner `assets/i18n/` geladen werden. Dabei muss für jede unterstützte Sprache eine JSON-Datei mit dem entsprechenden Sprachnamen erstellt werden. Für Demonstrationszwecke wurden nur die Sprachen Deutsch und Englisch (Files: `de.json` und `en.json`) übersetzt. Man könnte jedoch beliebige Sprachen übersetzen und einbinden.
+
+Dem TranslateModule muss bei Applikationsstart eine Standardsprache und eine Factory-Methode, die bestimmt, wie die Übersetzungen geladen werden, mitgegeben werden. In unserem Fall ein `HttpLoader`, welcher die Übersetzungen aus `assets/i18n/` lädt.
