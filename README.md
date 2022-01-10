@@ -236,3 +236,16 @@ Vom Backend wird die Zeitspanne der Detektoren als Millisekunden übergeben. Im 
 Die Verwaltung der Aktionen funktioniert analog zur Verwaltung der Detektoren über die Komponenten `ActionList` und `ActionDetails`. Das Ein- und Ausschalten fällt hierbei weg. Auch im interface `Action` wird wie bei `Detector` der Typ der Action mitgespeichert.
 
 Detektoren und Aktionen können über deren jeweilige Listenkomponente angelegt werden. Hierfür wurde ein Floating Action Button (FAB) gewählt, der als Speed Dial fungiert. Drückt man daruf, öffnet sich also eine Auswahl, welche Art von Detektor/Aktion angelegt werden soll.
+
+## Anzeige der Logs
+Die Logs werden tabellarisch nach Telemtrienamen gefiltert angezeigt. Hierfür wurde eine Suche implementiert, die bei Änderungen die Logs neu vom Backend abruft. Die Pipeline der Suchänderungen sieht wiefolgt aus:
+
+```typescript
+this.logs$ = this.keyup.pipe(
+  debounceTime(500),
+  distinctUntilChanged(),
+  tap(() => this.isLoading = true),
+  switchMap(x => this.logsService.getFiltered(x)),
+  tap(() => this.isLoading = false)
+);
+```
