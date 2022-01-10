@@ -192,6 +192,8 @@ Um das Erstellen von Telemetriedaten zu testen, kann der Demo Client gestartet w
 # AaaS Web
 > Georg Edlbauer (s2010307058)
 
+Um das UI modern zu gestalten wurde Angular Material verwendet. In Angular Material sind für die meisten Standardszenarien hochwertige Komponenten enthalten, die eine schnelle und elegante Entwicklung ermöglichen. Wie der Name schon sagt wurden diese Komponenten nach dem Material Design von Google gestaltet, wodurch ein einheitliches Design gewährleistet wird.
+
 ## Authentifizierung
 Die Authentifizierung am Frontend erfolgt über den Identity Server von Manfred Steyer. Um die Routen der Anwendung zu schützen wurde ein Guard erstellt, welcher vor dem Aufrufen eines Links überprüft, ob der Benutzer für den Aufruf berechtigt ist. Die Authentifizierungslogik selbst ist in dem Service `AuthenticationService` implementiert. Dieses kapselt im Wesentlichen das OAuthService aus dem npm Package `angular-oauth2-oidc` von Manfred Steyer. Die Informationen über den zu verwendenden Identity Server sind in `auth.config.ts` enthalten.
 
