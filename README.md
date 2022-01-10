@@ -197,7 +197,7 @@ Die Authentifizierung am Frontend erfolgt über den Identity Server von Manfred 
 
 ## Verwaltung der Detektoren
 In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden. 
-`
+```typescript
 import { Action } from "./action.type";
 import { DetectorType } from "./detectorType.type";
 
@@ -208,5 +208,4 @@ export interface Detector {
     checkInterval: number;
     isRunning: boolean;
     typeName?: DetectorType;
-}
-`
+}```
