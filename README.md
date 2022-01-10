@@ -199,8 +199,14 @@ Die Projektstruktur des WEA-Projekts sieht wiefolgt aus:
 
 ![Projektstruktur WEA](/images/projektstruktur-wea.png)
 
-## Authentifizierung
+In den Ordnern `components`, `directives`, `guards`, `pipes`, `http-interceptors` und `services` sind die jeweiligen selbst erstellten Elemente.
+Im Ordner `modules` wurde ein Modul erstellt, welches den Import der Angular Material Module kapselt, da Angular Material aus sehr vielen verschiedenen Modulen besteht und ansonsten `app.module.ts` schnell unübersichtlich wird. So muss im AppModule nur ein Modul eingebunden werden, welches den Import der Angular Komponenten bündelt.
+
+## Authentifizierung es Frontends
 Die Authentifizierung am Frontend erfolgt über den Identity Server von Manfred Steyer. Um die Routen der Anwendung zu schützen wurde ein Guard erstellt, welcher vor dem Aufrufen eines Links überprüft, ob der Benutzer für den Aufruf berechtigt ist. Die Authentifizierungslogik selbst ist in dem Service `AuthenticationService` implementiert. Dieses kapselt im Wesentlichen das OAuthService aus dem npm Package `angular-oauth2-oidc` von Manfred Steyer. Die Informationen über den zu verwendenden Identity Server sind in `auth.config.ts` enthalten.
+
+## Authentifizierung am Backend
+Die Authentifizierung am Backend erfolgt über einen API-Key, der im Header `X-Api-Key` übergeben werden muss. Da das bei allen API Calls benötigt wird, wurde ein HTTP Interceptor erstellt, welcher alle API Calls abfängt und den Header einfügt, bevor sie ans Backend übermittelt werden.
 
 ## Verwaltung der Detektoren
 In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden.
@@ -222,6 +228,9 @@ export interface Detector {
 Das Ein- und Ausschalten der Detektoren erfolgt direkt in der Liste über den Toggle Switch. Da das Click-Event von dem Toggle-Switch nach oben propagiert wird, würde standardmäßig bei einem Klick auf den Toggle Switch auf die Detailseite weitergeleitet werden. Das ist hier nicht gewünscht. Bei einem Klick auf den Toggle Switch soll nur der Detektor geupdatet werden und weiter nichts passieren. Das wurde über die Direktive `ClickStopPropagation` gelöst, da hier kein eigenes Template benötigt wird, sondern nur die Verhaltensweise bestehender Komponenten verändert werden soll.
 
 Clickt man auf einen Detektor in der Liste, gelangt man in die Detailansicht. Hier werden je nach Detektortyp die entsprechenden Properties geladen und in einem Reactive Form angezeigt, welches Dynamisch an den Detektor angepasst wird. Hierfür ist die Angular Komponente `DetectorDetails` zuständig.
+
+### Pipe FormatMilliSeconds
+Vom Backend wird die Zeitspanne der Detektoren als Millisekunden übergeben. Im Hintergrund soll im Frontend auch mit dem Wert in Millisekunden gearbeitet werden. Um die Anzeige jedoch für den Benutzer schöner darzustellen wurde die Pipe `FormatMilliSeconds` erstellt. Diese wandelt den numerischen Wert für die Anzeige in das Format `mm:ss.ms` um, was für Menschen einfacher interpretierbar ist als der direkte Wert in ms.
 
 ## Verwaltung der Aktionen
 Die Verwaltung der Aktionen funktioniert analog zur Verwaltung der Detektoren über die Komponenten `ActionList` und `ActionDetails`. Das Ein- und Ausschalten fällt hierbei weg. Auch im interface `Action` wird wie bei `Detector` der Typ der Action mitgespeichert.
