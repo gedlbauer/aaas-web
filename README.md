@@ -208,6 +208,9 @@ Die Authentifizierung am Frontend erfolgt über den Identity Server von Manfred 
 ## Authentifizierung am Backend
 Die Authentifizierung am Backend erfolgt über einen API-Key, der im Header `X-Api-Key` übergeben werden muss. Da das bei allen API Calls benötigt wird, wurde ein HTTP Interceptor erstellt, welcher alle API Calls abfängt und den Header einfügt, bevor sie ans Backend übermittelt werden.
 
+## Dashboard
+Am Dashboard werden Metriken in form von Charts visualisiert. Welche Metriken angezeigt werden sollen, und wie die Charts aussehen sollen, kann der\*die Benutzer\*in selbst entscheiden. Hierfür werden bei Applikationsstart die unterschiedlichen Metrik-Arten abgerufen und in einer Dropdown-Liste angezeigt. Welcher Charttyp angezeigt wird kann pro ausgewählter Metrik separat gewählt werden. Hierfür wurde die Komponente `Chart` erstellt. Für das Charting selbst wurde die Library "ECharts" von Apache gewählt
+
 ## Verwaltung der Detektoren
 In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden.
 
@@ -235,7 +238,7 @@ Vom Backend wird die Zeitspanne der Detektoren als Millisekunden übergeben. Im 
 ## Verwaltung der Aktionen
 Die Verwaltung der Aktionen funktioniert analog zur Verwaltung der Detektoren über die Komponenten `ActionList` und `ActionDetails`. Das Ein- und Ausschalten fällt hierbei weg. Auch im interface `Action` wird wie bei `Detector` der Typ der Action mitgespeichert.
 
-Detektoren und Aktionen können über deren jeweilige Listenkomponente angelegt werden. Hierfür wurde ein Floating Action Button (FAB) gewählt, der als Speed Dial fungiert. Drückt man daruf, öffnet sich also eine Auswahl, welche Art von Detektor/Aktion angelegt werden soll.
+Detektoren und Aktionen können über deren jeweilige Listenkomponente angelegt werden. Hierfür wurde ein Floating Action Button (FAB) gewählt, der als Speed Dial fungiert. Drückt man daruf, öffnet sich also eine Auswahl, welche Art von Detektor/Aktion angelegt werden soll. Diese Funktionalität wurde in die Komponente `SpeedDialFab` ausgelagert, welche so gestaltet wurde, dass sie sowohl für die Aktionen als auch für die Detektoren verwendet werden kann.
 
 ## Anzeige der Logs
 Die Logs werden tabellarisch nach Telemtrienamen gefiltert angezeigt. Hierfür wurde eine Suche implementiert, die bei Änderungen die Logs neu vom Backend abruft. Die Pipeline der Suchänderungen sieht wiefolgt aus:
@@ -251,3 +254,18 @@ this.logs$ = this.keyup.pipe(
 ```
 
 Auf die Änderungen wird mit einem EventEmitter gehört, jedoch mit einer Abklingzeit von 500ms. So werden unnötige API-Aufrufe und somit Netzwerk-Traffic gespart, solange der Benutzer noch tippt. Ist die Eingabe gleich, so wird die Pipeline ebenfalls abgebrochen und kein API-Call abgesetzt. Mit `switchMap` wird die Eingabe dann über den API-Call auf die entsprechende Liste von Logs gemappt. Auf das Observable `logs$` wird dann in `ngOnInit` subscribed und bei neuen Werten die Tabelle aktualisiert.
+
+## Internationalisierung
+Um die Applikation in verschiedenen Ländern verfügbar zu machen, wurde Internationalisierung (i18n) eingesetzt. Hierfür wurde das `TranslateModule` aus `@ngx-translate` verwendet. Die benötigten Übersetzungen werden in der Laufzeit per TranslateHttpLoader geladen, welcher ebenfalls in `@ngx-translate` enthalten ist.
+
+Per Konfiguration wurde festelegt, dass die Übersetzungen aus dem Ordner `assets/i18n/` geladen werden. Dabei muss für jede unterstützte Sprache eine JSON-Datei mit dem entsprechenden Sprachnamen erstellt werden. Für Demonstrationszwecke wurden nur die Sprachen Deutsch und Englisch (Files: `de.json` und `en.json`) übersetzt. Man könnte jedoch beliebige Sprachen übersetzen und einbinden.
+
+Dem TranslateModule muss beim Import eine Standardsprache und eine Factory-Methode, die bestimmt, wie die Übersetzungen geladen werden, mitgegeben werden. In unserem Fall ein `HttpLoader`, welcher die Übersetzungen aus `assets/i18n/` lädt.
+
+Bei Applikationsstart muss das TranslateService, welche die Übersetzung übernimmt, konfiguriert werden. Es müssen die unterstützten Sprachen und die gewählte Sprache eingestellt werden. In unserem Fall ist das entweder die Browsersprache, oder die im TranslateModule angegebene Standardsprache, falls die Browsersprache nicht verfügbar ist.
+
+Nach den genannten Einstellungen ist in den HTML-Templates eine `translate` Pipe verfügbar. Diese nutzt den gegebenen String als Key und gibt die Übersetzung zurück. Soll beispielsweise "Speichern" übersetzt werden, welches in den Übersetzungsfiles mit dem Key "save" hinterlegt ist, genügt folgender Code im HTML-Template, um den übersetzten Text anzuzeigen:
+
+```html
+{{ 'save' | translate }}
+```
