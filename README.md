@@ -189,7 +189,7 @@ Um das Erstellen von Telemetriedaten zu testen, kann der Demo Client gestartet w
 
 **ACHTUNG:** Der Demo Client funktioniert nur, wenn die API auf der lokalen Maschiene läuft. 
 
-# AaaS Web
+# AaaS Web (WEA Teil)
 > Georg Edlbauer (s2010307058)
 > Aufwand: 50h
 
