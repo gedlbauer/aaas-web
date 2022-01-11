@@ -216,6 +216,10 @@ Im `MetricsService` befindet sich die Logik zur Abfrage der Metriken. Zuerst wer
 
 Im Anschluss können die Metriken mit einem gewählten Namen von dem Service abgerufen werden. Für die Metriken selbst wurde kein clientseitiges Caching implementiert, weil es zu viele Varianten gibt, wie man die Metriken abrufen kann. Zusätzlich kann angegeben werden, wie viele Werte der Metrik abgerufen werden sollen. Da ist aus Gründen der Übersichtlichkeit und Schnelligkeit wichtig.
 
+Das folgende Sequenzdiagramm zeigt den Ablauf des Ladens von Metrikdiagrammen:
+
+![Sequenzdiagramm Abruf Metriken](/images/sequendziagramm_metrics.png)
+
 ## Verwaltung der Detektoren
 In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden.
 
