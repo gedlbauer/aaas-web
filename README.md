@@ -191,6 +191,7 @@ Um das Erstellen von Telemetriedaten zu testen, kann der Demo Client gestartet w
 
 # AaaS Web (WEA Teil)
 > Georg Edlbauer (s2010307058)
+> 
 > Aufwand: 50h
 
 Um das UI modern zu gestalten wurde Angular Material verwendet. In Angular Material sind für die meisten Standardszenarien hochwertige Komponenten enthalten, die eine schnelle und elegante Entwicklung ermöglichen. Wie der Name schon sagt wurden diese Komponenten nach dem Material Design von Google gestaltet, wodurch ein einheitliches Design gewährleistet wird.
@@ -294,4 +295,4 @@ Nach den genannten Einstellungen ist in den HTML-Templates eine `translate` Pipe
 ## Getting Started
 Zuerst müssen die node_modules per `npm install` installiert werden. Danach kann die Anwendung mit `ng serve` gestartet werden. Der Url für die Web API ist in `environments/environment.ts` hinterlegt. Es kann zwischen verschiedenen Clients gewechselt werden, indem für `apiKey` in `environment.ts` ein anderer Eintrag aus dem hinterlegeten Array an API Keys gewählt wird.
 
-Zum Start wird das Backend benötigt. Dieses ist unter ![https://github.com/swk5-2021ws/vz-aaas-g2-edlbauer-g2-pramendorfer](https://github.com/swk5-2021ws/vz-aaas-g2-edlbauer-g2-pramendorfer) zum Download verfügbar.
+Zum Start wird das Backend benötigt. Dieses ist unter https://github.com/swk5-2021ws/vz-aaas-g2-edlbauer-g2-pramendorfer zum Download verfügbar.
