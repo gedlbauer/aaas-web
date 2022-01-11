@@ -290,3 +290,8 @@ Nach den genannten Einstellungen ist in den HTML-Templates eine `translate` Pipe
 ```html
 {{ 'save' | translate }}
 ```
+
+## Getting Started
+Zuerst müssen die node_modules per `npm install` installiert werden. Danach kann die Anwendung mit `ng serve` gestartet werden. Der Url für die Web API ist in `environments/environment.ts` hinterlegt. Es kann zwischen verschiedenen Clients gewechselt werden, indem für `apiKey` in `environment.ts` ein anderer Eintrag aus dem hinterlegeten Array an API Keys gewählt wird.
+
+Zum Start wird das Backend benötigt. Dieses ist unter ![https://github.com/swk5-2021ws/vz-aaas-g2-edlbauer-g2-pramendorfer](https://github.com/swk5-2021ws/vz-aaas-g2-edlbauer-g2-pramendorfer) zum Download verfügbar.
