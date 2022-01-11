@@ -191,6 +191,7 @@ Um das Erstellen von Telemetriedaten zu testen, kann der Demo Client gestartet w
 
 # AaaS Web
 > Georg Edlbauer (s2010307058)
+> Aufwand: 50h
 
 Um das UI modern zu gestalten wurde Angular Material verwendet. In Angular Material sind für die meisten Standardszenarien hochwertige Komponenten enthalten, die eine schnelle und elegante Entwicklung ermöglichen. Wie der Name schon sagt wurden diese Komponenten nach dem Material Design von Google gestaltet, wodurch ein einheitliches Design gewährleistet wird.
 
