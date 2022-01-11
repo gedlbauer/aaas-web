@@ -218,7 +218,7 @@ Im Anschluss können die Metriken mit einem gewählten Namen von dem Service abg
 
 Das folgende Sequenzdiagramm zeigt den Ablauf des Ladens von Metrikdiagrammen:
 
-![Sequenzdiagramm Abruf Metriken](/images/sequendziagramm_metrics.png)
+![Sequenzdiagramm Abruf Metriken](/images/sequenzdiagramm_metrics.png)
 
 ## Verwaltung der Detektoren
 In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden.
