@@ -209,7 +209,12 @@ Die Authentifizierung am Frontend erfolgt über den Identity Server von Manfred 
 Die Authentifizierung am Backend erfolgt über einen API-Key, der im Header `X-Api-Key` übergeben werden muss. Da das bei allen API Calls benötigt wird, wurde ein HTTP Interceptor erstellt, welcher alle API Calls abfängt und den Header einfügt, bevor sie ans Backend übermittelt werden.
 
 ## Dashboard
-Am Dashboard werden Metriken in form von Charts visualisiert. Welche Metriken angezeigt werden sollen, und wie die Charts aussehen sollen, kann der\*die Benutzer\*in selbst entscheiden. Hierfür werden bei Applikationsstart die unterschiedlichen Metrik-Arten abgerufen und in einer Dropdown-Liste angezeigt. Welcher Charttyp angezeigt wird kann pro ausgewählter Metrik separat gewählt werden. Hierfür wurde die Komponente `Chart` erstellt. Für das Charting selbst wurde die Library "ECharts" von Apache gewählt
+Am Dashboard werden Metriken in form von Charts visualisiert. Welche Metriken angezeigt werden sollen, und wie die Charts aussehen sollen, kann der\*die Benutzer\*in selbst entscheiden. Hierfür werden bei Applikationsstart die unterschiedlichen Metrik-Arten abgerufen und in einer Dropdown-Liste angezeigt. Welcher Charttyp angezeigt wird kann pro ausgewählter Metrik separat gewählt werden. Hierfür wurde die Komponente `Chart` erstellt. Für das Charting selbst wurde die Library "ECharts" von Apache gewählt.
+
+### MetricsService
+Im `MetricsService` befindet sich die Logik zur Abfrage der Metriken. Zuerst werden die verfügbaren Metriknamen benötigt, damit der\*die Benutzer\*in wählen kann, welche Metriken angezeigt werden. Dazu wurde ein `BehaviorSubject` erstellt, dessen Wert zu Beginn ein leeres Array ist. Bei der Instanziierung des Services werden dann die Metriknamen vom Backend geladen und `BehaviorSubject.next()` mit dem neuen Wert aufgerufen. So bekommen alle Subscriber des Subjects in der gesamten Anwendung die neuen Metriknamen.
+
+Im Anschluss können die Metriken mit einem gewählten Namen von dem Service abgerufen werden. Für die Metriken selbst wurde kein clientseitiges Caching implementiert, weil es zu viele Varianten gibt, wie man die Metriken abrufen kann. Zusätzlich kann angegeben werden, wie viele Werte der Metrik abgerufen werden sollen. Da ist aus Gründen der Übersichtlichkeit und Schnelligkeit wichtig.
 
 ## Verwaltung der Detektoren
 In die Detektorverwaltung kann über den Menüpunkt `Detektoren` eingestiegen werden. Zunächst wird hier eine Liste aller Detektoren angezeigt, welcher man auch den Typ des jeweiligen Detektors entnehmen kann. Da JavaScript zur Laufzeit keine Typen mehr kennt, muss der Typ des Detektors in einem Feld gespeichert werden.
@@ -232,6 +237,9 @@ Das Ein- und Ausschalten der Detektoren erfolgt direkt in der Liste über den To
 
 Clickt man auf einen Detektor in der Liste, gelangt man in die Detailansicht. Hier werden je nach Detektortyp die entsprechenden Properties geladen und in einem Reactive Form angezeigt, welches Dynamisch an den Detektor angepasst wird. Hierfür ist die Angular Komponente `DetectorDetails` zuständig.
 
+### DetectorsService
+Die eigentliche Verwaltung der Detektoren erfolgt im Hintergrund im `DetectorsService`. In einem `BehaviorSubject` wird immer die aktuelle Liste an Detektoren gespeichert. Der Initialwert des BehaviorSubjects ist ein leeres Array. Bei der Instanziierung wird dann die Liste von Detektoren vom Backend geholt. Man könnte das Abrufen der Detektorliste auch an anderen Zeitpunkten auslösen, das wurde jedoch in diesem Web-Client bewusst nicht gemacht, um Traffic zu sparen. Wird ein Detektor hinzugefügt/verändert, so muss nach dieser Änderung nicht die ganze Detektorliste abgerufen werden, sondern das Element kann nach positiver Serverantwort clientseitig eine Veränderung der Liste im BehaviorSubject ausgelöst werden. Danach werden alle Komponenten informiert, die auf das BehaviorSubject subscribed sind.
+
 ### Pipe FormatMilliseconds
 Vom Backend wird die Zeitspanne der Detektoren als Millisekunden übergeben. Im Hintergrund soll im Frontend auch mit dem Wert in Millisekunden gearbeitet werden. Um die Anzeige jedoch für den Benutzer schöner darzustellen wurde die Pipe `FormatMilliseconds` erstellt. Diese wandelt den numerischen Wert für die Anzeige in das Format `mm:ss.ms` um, was für Menschen einfacher interpretierbar ist als der direkte Wert in ms.
 
@@ -239,6 +247,9 @@ Vom Backend wird die Zeitspanne der Detektoren als Millisekunden übergeben. Im 
 Die Verwaltung der Aktionen funktioniert analog zur Verwaltung der Detektoren über die Komponenten `ActionList` und `ActionDetails`. Das Ein- und Ausschalten fällt hierbei weg. Auch im interface `Action` wird wie bei `Detector` der Typ der Action mitgespeichert.
 
 Detektoren und Aktionen können über deren jeweilige Listenkomponente angelegt werden. Hierfür wurde ein Floating Action Button (FAB) gewählt, der als Speed Dial fungiert. Drückt man daruf, öffnet sich also eine Auswahl, welche Art von Detektor/Aktion angelegt werden soll. Diese Funktionalität wurde in die Komponente `SpeedDialFab` ausgelagert, welche so gestaltet wurde, dass sie sowohl für die Aktionen als auch für die Detektoren verwendet werden kann.
+
+### ActionsService
+Das ActionsService funktioniert analog zum DetectorsService, welches weiter oben beschrieben wurde.
 
 ## Anzeige der Logs
 Die Logs werden tabellarisch nach Telemtrienamen gefiltert angezeigt. Hierfür wurde eine Suche implementiert, die bei Änderungen die Logs neu vom Backend abruft. Die Pipeline der Suchänderungen sieht wiefolgt aus:
@@ -254,6 +265,11 @@ this.logs$ = this.keyup.pipe(
 ```
 
 Auf die Änderungen wird mit einem EventEmitter gehört, jedoch mit einer Abklingzeit von 500ms. So werden unnötige API-Aufrufe und somit Netzwerk-Traffic gespart, solange der Benutzer noch tippt. Ist die Eingabe gleich, so wird die Pipeline ebenfalls abgebrochen und kein API-Call abgesetzt. Mit `switchMap` wird die Eingabe dann über den API-Call auf die entsprechende Liste von Logs gemappt. Auf das Observable `logs$` wird dann in `ngOnInit` subscribed und bei neuen Werten die Tabelle aktualisiert.
+
+### LogsService
+Im `LogService` können die Logs für die Anzeige abgerufen werden. Da durch das Filtern sehr viele verschiedene Requests zustande kommen können, wurde hier auf das clientseitige Caching mittels BehaviorSubject verzichtet, weil es nicht sinnvoll wäre.
+
+Neben den Logs können auch die Logtypen aus dem LogsService bezogen werden. Ein Logtyp stellt ein Mapping eines Statuscodes zu einem Sprechenden Typen wie Info, oder Warning dar. Da sich die Logtypen selten bis nie verändern wurde bei diesen wieder auf ein Caching mittels BehaviorSubject gesetzt, welches bei der Instanziierung die Logtypen vom Server lädt.
 
 ## Internationalisierung
 Um die Applikation in verschiedenen Ländern verfügbar zu machen, wurde Internationalisierung (i18n) eingesetzt. Hierfür wurde das `TranslateModule` aus `@ngx-translate` verwendet. Die benötigten Übersetzungen werden in der Laufzeit per TranslateHttpLoader geladen, welcher ebenfalls in `@ngx-translate` enthalten ist.
